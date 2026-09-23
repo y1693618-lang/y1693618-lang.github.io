@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>音を使わずに、手応えを作る — 結晶洞窟の開発記録</title>
+<meta name="description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、5言語対応の作り方、見つけた2つのバグ。">
+<link rel="canonical" href="https://y1693618-lang.github.io/kaihatsu.html">
+<link rel="alternate" hreflang="ja" href="https://y1693618-lang.github.io/kaihatsu.html">
+<link rel="alternate" hreflang="en" href="https://y1693618-lang.github.io/en/making-of.html">
+<link rel="alternate" hreflang="x-default" href="https://y1693618-lang.github.io/kaihatsu.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音を使わずに、手応えを作る — 結晶洞窟の開発記録">
+<meta property="og:description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、5言語対応の作り方、見つけた2つのバグ。">
+<meta property="og:url" content="https://y1693618-lang.github.io/kaihatsu.html">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html" aria-current="page">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/making-of.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">ケーススタディ</p><h1>音を使わずに、手応えを作る</h1><p class="lede">聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作りました。何を制約として引き受け、どこで判断したかの記録です。</p></div></div><div class="wrap"><div class="prose wide">
+<dl class="meta">
+  <div><dt>作ったもの</dt><dd>ブラウザで動く放置ゲーム（HTML 1ファイル、約8,000行）</dd></div>
+  <div><dt>使った技術</dt><dd>HTML / CSS / JavaScript / Canvas 2D。フレームワークもビルドツールも使っていません</dd></div>
+  <div><dt>外部への依存</dt><dd>Webフォント1つだけ。サーバーもデータベースもAPIもありません</dd></div>
+  <div><dt>対応言語</dt><dd>日本語・English・简体中文・한국어・Español の5言語</dd></div>
+  <div><dt>期間</dt><dd>2026年9月（設計と実装）</dd></div>
+</dl>
+
+<h2>前提にあった3つの制約</h2>
+<p>作りはじめる前に、動かせない条件が3つありました。どれも後から足せるものではなく、最初の設計に効いてくるものです。</p>
+
+<h3>1. 音を使えない</h3>
+<p>私は聴覚障害があります。音で手応えを返すゲームは、私自身が楽しめません。効果音を付けて「自分には聞こえないけど、たぶんいい感じだろう」と想像しながら作るのは、作り手として誠実ではないと思いました。</p>
+<p>だから最初から音を使わないと決めました。消極的な除外ではなく、<strong>「視覚だけで手応えを成立させる」という設計課題として引き受けました。</strong></p>
+
+<h3>2. メンテナンスを最小限にしたい</h3>
+<p>私はプログラミング未経験です。作ったものが壊れたとき、自分で原因を突き止めて直せる保証がありません。加えて求職中で収入の見込みがないため、月額のかかるサーバーも借りられません。</p>
+<p>この2つを合わせると、答えはひとつでした。<strong>そもそも壊れる箇所を作らない。</strong></p>
+<p>サーバーを一切使わないと決めました。ログインもなし、データベースもなし、外部APIもなし。セーブはブラウザの中だけ。読み込むものはWebフォント1つだけ。</p>
+<p>この判断は、単に楽をするためのものではありません。<strong>技術的に何かあっても、自分の手に負える範囲に収まる</strong>ようにするためです。サーバーがなければサーバーは落ちませんし、外部サービスを使っていなければ、その仕様変更に振り回されることもありません。公開したあと放っておいても、数年後に開いてたぶん同じように動きます。</p>
+
+<h3>3. 自分が使えるものにする</h3>
+<p>アクセシビリティを「余裕があれば足す機能」にしたくありませんでした。自分が当事者なので、後回しにすると自分が困ります。最初から組み込みました。</p>
+
+<hr>
+
+<h2>判断1：音の代わりに何を返すか</h2>
+<p>タップしたときの手応えは、ふつう音が担います。音を抜くと、そこに穴が空きます。何で埋めるかを考えました。</p>
+<p>結論は「ひとつの動作に、性質の違う反応を3つ重ねる」でした。タップすると次の3つが同時に起きます。</p>
+<ul>
+  <li><strong>結晶が一瞬ふくらむ</strong> — 押した対象そのものが反応する（触った感触の代わり）</li>
+  <li><strong>粒子が弾ける</strong> — 押した位置から放射状に飛ぶ（力が加わった証拠）</li>
+  <li><strong>数字が浮かび上がる</strong> — 「+120」が上に流れて消える（結果の確認）</li>
+</ul>
+<p>3つとも視覚ですが、担当している意味が違います。ひとつ消しても他の2つが残るので、どこかを見落としても手応えが途切れません。</p>
+<p>浮かぶ数字には縁取りを入れました。背景の色は鉱脈ごとに変わるので、縁取りがないと条件によって数字が読めなくなるからです。</p>
+
+<h2>判断2：色だけで情報を伝えない</h2>
+<p>「買える設備」を緑、「買えない設備」を灰色にする——よくある表現ですが、色覚特性によっては区別できません。</p>
+<p>買える設備には<strong>値段の前に「▸」を付けました。</strong>枠線も変わり、明度も変わります。色が見えなくても、記号と形で分かります。</p>
+<p>同じ考えで、選択中の設定項目にはチェックマークが入ります。一時停止中は画面全体が暗くなり、なおかつ「一時停止中」という文字が出ます。状態を色だけで示している箇所は、最終的にひとつも残りませんでした。</p>
+
+<h2>判断3：文字サイズは全体を動かす</h2>
+<p>文字を大きくする機能はよくありますが、本文だけが大きくなって数字やボタンが小さいまま、ということがあります。</p>
+<p>このゲームでは、<strong>CSSのカスタムプロパティひとつで画面全体の文字が拡大します。</strong></p>
+<blockquote>
+<p><code>--fs</code> という倍率を用意し、すべての文字サイズを <code>calc(14px * var(--fs))</code> のように定義しました。4段階のボタンはこの倍率を 0.92 / 1 / 1.14 / 1.32 に切り替えるだけです。</p>
+</blockquote>
+<p>Canvasに描いている浮かぶ数字も、同じ倍率を読んで描画サイズを変えます。HTMLとCanvasという別々の仕組みが、ひとつの値で揃います。</p>
+
+<h2>判断4：コントラストを後から測って直した</h2>
+<p>最初に作った配色は、見た目は良かったのですが、薄いグレーの文字が背景に溶けていました。実際に測ると、コントラスト比が2.8：1しかない箇所がありました。WCAGの基準は4.5：1です。</p>
+<p>すべての文字色を測り直し、基準を下回っていたものを明るくしました。さらに<strong>純黒×純白の「高コントラスト」配色を2つ追加</strong>しました。見た目を優先した配色と、読みやすさを最大にした配色の両方を用意して、選べるようにするという解決です。</p>
+
+<h2>判断5：セーブコードを312文字から47文字へ</h2>
+<p>別の端末に移すためのセーブコードは、最初はゲームの状態をJSONにしてBase64で変換していました。これが<strong>312文字</strong>ありました。手で扱うには長すぎます。</p>
+<p>中身を見ると、ほとんどが <code>{"crystals":</code> のような繰り返しのラベルでした。値の順番さえ決めておけば、ラベルは要りません。</p>
+<p>そこで、19個の数値を<strong>36進数</strong>（0〜9とa〜z）に変換して、ハイフンでつないだだけの形式に変えました。末尾2文字はチェックサムで、打ち間違いを弾きます。</p>
+<blockquote>
+<p><code>CC2-16j8-247h-qglk-c-y-2-14-p-e-6-2-0-0-8o-1-7-0-tlqv01-0i</code></p>
+</blockquote>
+<p><strong>312文字が47〜60文字になりました。約6分の1です。</strong>古い形式のコードも読めるようにしてあるので、すでに控えを取っていた人が困ることはありません。</p>
+
+<h2>判断6：5言語を、後から足さなかった</h2>
+<p>多言語対応を後から足すと、文章がコードのあちこちに散らばっていて、全部拾い出す作業になります。それを避けるため、<strong>表示される文字をすべて1か所の翻訳テーブルに集めました。</strong></p>
+<p>翻訳したのはUIだけではありません。設備の名前と説明、鉱脈の名前、イベントの名前、遊び方の全文、共有用の文章まで含みます。</p>
+<p>数字の単位も、はじめは言語ごとに変えていました。日本語は万・億・兆、英語は K・M・B。<strong>「1万」を英語話者に見せても伝わらない</strong>からです。</p>
+<p>ところが実際に並べてみると、別の問題が見えました。<strong>どの単位も、読む人がその約束ごとを知っていることを前提にしている</strong>のです。日本語話者が「10K」で一瞬つまずくのと同じことが、英語話者の「1万」でも起きます。数字を読み違えるゲームで、数字が読み違えられては話になりません。</p>
+<p>最終的に<strong>単位をやめ、桁をそのまま出す</strong>ことにしました。「600,000,000」は長いけれど、どの言語の読者にとっても同じ意味です。長さのほうは、桁数に応じて文字を小さくし、収まらない箇所は折り返すことで解決しました。区切り記号だけは各言語の標準に合わせています。</p>
+
+<hr>
+
+<h2>途中で見つけた2つのバグ</h2>
+
+<h3>整数の末尾のゼロが消えていた</h3>
+<p>「3000億」が「3億」と表示されていました。原因は数字を整形する関数です。</p>
+<p>小数点以下の余分なゼロを消すために <code>replace(/\.?0+$/, '')</code> という処理を入れていたのですが、これが<strong>整数の末尾のゼロまで消していました。</strong>「3000」が「3」に、「1200万」が「12万」になっていたのです。</p>
+<p>初版から入っていた不具合で、小さい数字では表に出ないため気づきにくいものでした。小数点を含む場合だけ処理するよう直しました。</p>
+
+<h3>HTMLのタグを1文字閉じ忘れていた</h3>
+<p>鉱脈到達や再結晶の演出が出なくなっていました。調べると、<code>&gt;</code> を1文字書き忘れていて、続く3行がタグの属性として吸い込まれていました。</p>
+<p>ブラウザはエラーを出さずに解釈するので、画面上は何も壊れて見えません。JavaScriptから要素を探したときに初めて <code>null</code> が返り、そこで処理が止まっていました。</p>
+<p>さらに厄介だったのは、<strong>この停止が同じ関数の後半の処理も巻き込んでいた</strong>ことです。「周回数が増えない」という別のバグに見えていたものが、実は同じ原因でした。表に出た症状と原因が離れている例です。</p>
+
+<hr>
+
+<h2>数字で見る</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>項目</th><th class="num">値</th></tr></thead>
+  <tbody>
+    <tr><td>HTMLファイル</td><td class="num">1個（約8,000行）</td></tr>
+    <tr><td>外部から読み込むもの</td><td class="num">Webフォント1つだけ</td></tr>
+    <tr><td>対応言語</td><td class="num">5</td></tr>
+    <tr><td>配色</td><td class="num">5（うち高コントラスト2）</td></tr>
+    <tr><td>文字サイズ</td><td class="num">4段階</td></tr>
+    <tr><td>鉱脈</td><td class="num">12</td></tr>
+    <tr><td>セーブコードの長さ</td><td class="num">47〜60文字</td></tr>
+    <tr><td>サーバー費用</td><td class="num">0円</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>作ってみて</h2>
+<p>音を使わないという制約は、最初は「できないこと」でした。作り終えてみると、<strong>「視覚だけで手応えを作る」という具体的な設計課題</strong>に変わっていました。制約があったから、タップの反応を3つ重ねるという解き方にたどり着けたのだと思います。</p>
+<p>アクセシビリティも同じです。自分が当事者だったので後回しにできず、結果として最初から組み込まれました。後から足すより、ずっと安く付きました。</p>
+<p>サーバーを使わないという判断も、維持費のためだけではありませんでした。外部に依存しないので、公開したあと放っておいても壊れません。数年後に開いても、たぶん同じように動きます。</p>
+
+<div class="note cool">
+<p>このゲームは<a href="index.html">このサイトのトップページ</a>でそのまま遊べます。登録は不要です。気づいたことがあれば<a href="contact.html">お問い合わせ</a>からお知らせください。</p>
+</div>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>

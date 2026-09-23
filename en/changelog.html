@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Changelog — Crystal Cavern</title>
+<meta name="description" content="Everything added and everything fixed in Crystal Cavern, newest first.">
+<link rel="canonical" href="https://y1693618-lang.github.io/en/changelog.html">
+<link rel="alternate" hreflang="ja" href="https://y1693618-lang.github.io/koushin.html">
+<link rel="alternate" hreflang="en" href="https://y1693618-lang.github.io/en/changelog.html">
+<link rel="alternate" hreflang="x-default" href="https://y1693618-lang.github.io/koushin.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Changelog — Crystal Cavern">
+<meta property="og:description" content="Everything added and everything fixed in Crystal Cavern, newest first.">
+<meta property="og:url" content="https://y1693618-lang.github.io/en/changelog.html">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html" aria-current="page">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../koushin.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">What changed</p><h1>Changelog</h1><p class="lede">Additions and fixes, newest first.</p></div></div><div class="wrap"><div class="prose">
+<div class="note cool">
+<p>Crystal Cavern was started on 22 September 2026 and rebuilt many times over that same day.
+What follows is the record of those changes.</p>
+</div>
+
+<h2>1.5 — Number abbreviations removed</h2>
+<p><span class="tag">2026-09-22</span></p>
+<ul>
+  <li><strong>K, M, B, 万 and 億 are gone.</strong> Numbers are shown at full length. Abbreviations
+  are shorter, but each asks the reader to know a convention, and conventions differ by language.
+  Digits mean the same thing to everyone</li>
+  <li>Large on-screen figures now <strong>shrink as the digits accumulate</strong></li>
+  <li>Prices and per-second figures wrap instead of pushing the layout sideways. This was
+  <strong>a layout problem the abbreviations had been hiding</strong> — past about twenty digits
+  the screen overflowed</li>
+  <li>Separators follow the language (1,234,567 in English and Japanese; 1.234.567 in Spanish)</li>
+</ul>
+
+<h2>1.4 — Positioning fixes</h2>
+<p><span class="tag">2026-09-22</span></p>
+<ul>
+  <li><strong>Announcements were appearing in the wrong place.</strong> On a wide screen they were
+  centred on the window rather than the cave, which put them over the building list. They now sit
+  at the top centre of the cave itself</li>
+  <li>The depth read-out moved back to the bottom left so it no longer collides with the hint</li>
+  <li>The home page no longer embeds the game; it links to it. Reading and playing are calmer apart</li>
+</ul>
+
+<h2>1.3 — Tap feedback pared back</h2>
+<p><span class="tag">2026-09-22</span></p>
+<ul>
+  <li>The shockwave ring on tapping was <strong>removed</strong></li>
+  <li>The flash of light across the crystal was <strong>removed</strong></li>
+  <li>Feedback is now carried by <strong>the crystal swelling and the shards scattering</strong>.
+  Fewer effects, each clearer, read better than more of them</li>
+  <li>The site palette was rebuilt: dark text on a light ground by default, switching to a dark
+  scheme when the device asks for one. Both were measured for contrast</li>
+</ul>
+
+<h2>1.2 — Tap feedback rebuilt</h2>
+<p><span class="tag">2026-09-22</span></p>
+<div class="note">
+<p>A player reported that they could not see the shards scattering. Investigated, and
+<strong>they were essentially invisible</strong>: counting the draw calls showed seven particles
+of one to two pixels. Apologies — the description and the reality did not match.</p>
+</div>
+<ul>
+  <li>Tap particles raised from <strong>seven to between sixteen and thirty-two</strong>, at two to three times the size</li>
+  <li>An expanding shockwave ring was added (removed again in 1.3)</li>
+  <li>A flash across the crystal was added (removed again in 1.3)</li>
+  <li>The crystal's swell was raised from 9% to 18% and now widens as well as lengthens, and lingers longer</li>
+  <li><strong>With the system set to reduce motion, the feedback had been disappearing entirely.</strong>
+  In that mode the shards now appear already scattered and fade in place: the motion is restrained,
+  the response survives</li>
+  <li>A full-screen button was added at the top right (desktop and Android)</li>
+</ul>
+
+<h2>1.1 — Event and bonus tuning</h2>
+<p><span class="tag">2026-09-22</span></p>
+<ul>
+  <li>Orbs now appear every <strong>ten minutes</strong> instead of every one to two. Rarer, so each is worth about twice as much</li>
+  <li>An orb stays on screen for fifteen seconds instead of thirteen, and drifts more slowly</li>
+  <li>Rewarded-video hooks added, off by default. Four of them: time skip, extended resonance, summon an orb, extra cores</li>
+  <li>Bonuses moved to a tab of their own, capped at ten a day, resetting when the date changes</li>
+  <li>The problem-report form moved to this site; the game keeps a link and a "copy the details" button</li>
+</ul>
+
+<h2>1.0 — Released</h2>
+<p><span class="tag">2026-09-22</span></p>
+
+<h3>The game</h3>
+<ul>
+  <li>Seams extended from seven to <strong>twelve</strong>. The five past Prism open one at a time, by rebirthing at the deepest seam you have</li>
+  <li><strong>Bulk buying</strong> added (×1 / ×10 / ×MAX)</li>
+  <li><strong>Every ten copies doubles a building's output</strong>, which gives the middle of the game something to aim at</li>
+  <li>An opening guide for first-time players, cut down to three lines</li>
+  <li>The depth ceiling was removed. Past the deepest seam it grows 4,000 m for every tenfold increase in the total</li>
+</ul>
+
+<h3>Looks</h3>
+<ul>
+  <li>Crystal dust now drifts through the cave air, coloured by the current seam</li>
+  <li>The corners of the frame darken slightly, drawing the eye to the crystal</li>
+  <li>A line of reflected light was added to the rock the crystal sits on</li>
+</ul>
+
+<h3>Legibility</h3>
+<ul>
+  <li><strong>Four text sizes</strong>, scaling every piece of text on the page</li>
+  <li>Five colour schemes, two of them maximum-contrast</li>
+  <li>All pale text colours lifted to at least 4.5:1 contrast</li>
+  <li>Affordable buildings no longer marked by colour alone — a "▸" and the border say it too</li>
+  <li>Every button raised to at least 46 pixels tall</li>
+  <li>The instructions given headings and separated item by item</li>
+</ul>
+
+<h3>Languages</h3>
+<ul>
+  <li><strong>Five languages</strong>: English, 日本語, 简体中文, 한국어, Español</li>
+  <li>Building names, seam names, event names, the full instructions and the share text are all translated</li>
+  <li>Number units recalculated per language (万・億 / K・M・B / 만・억)</li>
+  <li>Switchable in place from the globe at the top right</li>
+</ul>
+
+<h3>Saving and sharing</h3>
+<ul>
+  <li>The save code shrank from <strong>312 characters to 47</strong>, using base 36 and a checksum. Old codes still load</li>
+  <li>Sharing to X, Bluesky and LINE</li>
+  <li>Earning continues at half speed while away, up to eight hours</li>
+</ul>
+
+<h3>Fixed</h3>
+<ul>
+  <li><strong>Numbers were displaying incorrectly.</strong> "300 billion" showed as "3 billion" and "12 million" as "1.2 million", because the routine that strips trailing zeros after a decimal point was stripping them from whole numbers too</li>
+  <li><strong>A popup's HTML was malformed.</strong> A missing closing character stopped the seam and rebirth announcements from running. The apparently separate bug where the loop counter did not advance had the same cause</li>
+  <li><strong>The tap target was too generous.</strong> Tapping well away from the crystal still mined; it is now limited to the crystal itself</li>
+  <li>Depth had been stuck at 28,000 metres</li>
+</ul>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>

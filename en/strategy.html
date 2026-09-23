@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Strategy — Crystal Cavern</title>
+<meta name="description" content="What to buy and when to rebirth in Crystal Cavern, worked out from the real numbers, including how the ten-copy doubling changes the arithmetic.">
+<link rel="canonical" href="https://y1693618-lang.github.io/en/strategy.html">
+<link rel="alternate" hreflang="ja" href="https://y1693618-lang.github.io/kouryaku.html">
+<link rel="alternate" hreflang="en" href="https://y1693618-lang.github.io/en/strategy.html">
+<link rel="alternate" hreflang="x-default" href="https://y1693618-lang.github.io/kouryaku.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strategy — Crystal Cavern">
+<meta property="og:description" content="What to buy and when to rebirth in Crystal Cavern, worked out from the real numbers, including how the ten-copy doubling changes the arithmetic.">
+<meta property="og:url" content="https://y1693618-lang.github.io/en/strategy.html">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html" aria-current="page">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../kouryaku.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">Digging efficiently</p><h1>Strategy</h1><p class="lede">What to buy and when to rebirth. Several of these decisions can be settled with arithmetic rather than instinct.</p></div></div><div class="wrap"><div class="prose">
+<h2>The one rule worth knowing</h2>
+<p>When in doubt, <strong>buy whichever building has the lowest price divided by income
+gained</strong>. That number is how many seconds the purchase takes to pay for itself.</p>
+<p>Glowing Moss at 20 crystals for 0.3 per second pays back in about 67 seconds. Little Drill
+at 180 for 1.8 per second takes 100. At that moment, moss is the better buy.</p>
+<p>Because each copy costs more than the last, the number gets worse as you buy. Sooner or
+later the next building overtakes it. That is when you switch.</p>
+
+<h2>Mind the doubling</h2>
+<p>Every ten copies doubles a building's output, which bends the arithmetic above.</p>
+<p><strong>The tenth copy of a building you own nine of is worth roughly eleven copies</strong>,
+because buying it doubles the lot. If the bar is one or two short, it is usually right to
+finish it even at an unfavourable price.</p>
+<p>Buying with ×MAX can overshoot straight past that point. When a doubling is close, step
+through the last few with ×1.</p>
+
+<div class="note cool">
+<p><strong>A rough guide</strong>: three or fewer to go, fill it before anything else. Seven or
+more to go, spend elsewhere.</p>
+</div>
+
+<h2>Early game (up to 10,000)</h2>
+<p>This is the part where tapping matters. Buy Sharpen the Pick a few times early; a bigger tap
+noticeably shortens the wait for your first buildings.</p>
+<p>For buildings, ten Glowing Moss then ten Little Drill is a clean opening. Ten moss is 6 per
+second, twenty is 12.</p>
+<p>Resonance Gloves appear at 6,000 all time. <strong>There is no hurry.</strong> Three percent
+of a small income is a small number. They become strong once you are past about 100 per second.</p>
+
+<h2>Mid game (10,000 to 1,000,000)</h2>
+<p>Tapping fades and the buildings take over. This is the stretch where a game like this can
+drag, so <strong>lean on ×10 and ×MAX</strong> — they exist to take the clicking out of it.</p>
+<p>When a new building becomes affordable, buy one and watch the per-second figure. The row
+shows you exactly what it added, which makes the comparison with what you already own easy.</p>
+<p>In this stretch, filling a cheap building to its next doubling often beats one copy of an
+expensive one. Twenty Bat Porters make 44 per second — close to a single Ley Pump's 62, for far
+less money.</p>
+
+<h2>When to rebirth</h2>
+<p>Rebirth unlocks at one million all time. Cores scale with the square root of your total,
+which means <strong>quadrupling your total only doubles your cores</strong>.</p>
+<div class="table-scroll">
+<table>
+  <caption>All-time total against the cores you would receive</caption>
+  <thead><tr><th class="num">All-time total</th><th class="num">Cores</th><th class="num">Multiplier</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1,000,000</td><td class="num">8</td><td class="num">×1.16</td></tr>
+    <tr><td class="num">10,000,000</td><td class="num">25</td><td class="num">×1.50</td></tr>
+    <tr><td class="num">100,000,000</td><td class="num">80</td><td class="num">×2.60</td></tr>
+    <tr><td class="num">1,000,000,000</td><td class="num">252</td><td class="num">×6.04</td></tr>
+    <tr><td class="num">10,000,000,000</td><td class="num">800</td><td class="num">×17.0</td></tr>
+  </tbody>
+</table>
+</div>
+<p>What that table says is that <strong>grinding gets worse the longer you do it</strong>. A
+hundred million earns 80 cores; grinding ten times as long for a billion earns 252 — barely
+three times as many.</p>
+<p>The practical rule is <strong>rebirth when progress visibly slows</strong>. If the next seam
+looks like hours away, that is the moment. The next run, with the multiplier behind it, covers
+the same ground far faster.</p>
+
+<div class="note">
+<p><strong>One exception.</strong> Rebirthing before you have reached the deepest seam you have
+opened does not unseal anything. If you want the next seam, wait until the meter says "Rebirth
+to open the next seam".</p>
+</div>
+
+<h2>Using resonance well</h2>
+<p>Crystal Resonance multiplies everything by five for thirty seconds. <strong>Its value is
+proportional to your per-second income</strong>, which means there is no point frantically
+tapping through it — the multiplier is already doing its work on your buildings. Leave it alone.</p>
+<p>Unless you have Resonance Gloves, that is: they put 3% of your (already quintupled) income
+into every tap. With the gloves grown, those thirty seconds are worth tapping through.</p>
+
+<h2>Making use of being away</h2>
+<p>Time away earns at half speed and caps at eight hours. <strong>The most efficient way to play
+is therefore to set your buildings up before bed and collect in the morning.</strong></p>
+<p>Anything past eight hours is lost, so on a longer break it is worth opening once inside that
+window. That said, the game progresses fine if you never think about this at all.</p>
+
+<h2>Reading the numbers</h2>
+<p>Numbers are shown <strong>at full length</strong> — "1,256", "600,000,000" — with
+separators and nothing else. No K, M or B, and no 万 or 億 either.</p>
+<p>Abbreviations are shorter, but every one of them asks the reader to know a convention.
+"1万" is instant for a Japanese reader and meaningless to an English one; "10K" is the reverse.
+<strong>The digits themselves mean the same thing in every language</strong>, so the
+abbreviations were dropped.</p>
+<p>Only the separator follows the language: English and Japanese write 1,234,567 while Spanish
+writes 1.234.567. That is each language's own convention for the same number.</p>
+<p>Longer numbers need more room, so the large figures on screen
+<strong>shrink as the digits pile up</strong>, and prices and per-second figures wrap rather than
+push the layout sideways. Nothing runs off the screen at any length.</p>
+<p>There is no ceiling. Counting stays exact to 9,007,199,254,740,991 and continues past that.
+Depth has no ceiling either: once you reach the deepest seam it keeps creeping down by 4,000
+metres for every tenfold increase in your total.</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>

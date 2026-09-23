@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Building feedback without sound — making Crystal Cavern</title>
+<meta name="description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping five languages, and two bugs found along the way.">
+<link rel="canonical" href="https://y1693618-lang.github.io/en/making-of.html">
+<link rel="alternate" hreflang="ja" href="https://y1693618-lang.github.io/kaihatsu.html">
+<link rel="alternate" hreflang="en" href="https://y1693618-lang.github.io/en/making-of.html">
+<link rel="alternate" hreflang="x-default" href="https://y1693618-lang.github.io/kaihatsu.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building feedback without sound — making Crystal Cavern">
+<meta property="og:description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping five languages, and two bugs found along the way.">
+<meta property="og:url" content="https://y1693618-lang.github.io/en/making-of.html">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html" aria-current="page">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../kaihatsu.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">Case study</p><h1>Building feedback without sound</h1><p class="lede">A deaf developer builds an idle game that makes no sound at all. A record of which constraints were taken on, and where the decisions were made.</p></div></div><div class="wrap"><div class="prose wide">
+<dl class="meta">
+  <div><dt>What it is</dt><dd>An idle game that runs in a browser — one HTML file, roughly 8,000 lines</dd></div>
+  <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, Canvas 2D. No framework, no build step</dd></div>
+  <div><dt>External dependencies</dt><dd>One web font. No server, no database, no API</dd></div>
+  <div><dt>Languages</dt><dd>English, 日本語, 简体中文, 한국어, Español</dd></div>
+  <div><dt>When</dt><dd>September 2026</dd></div>
+</dl>
+
+<h2>Three constraints, set before anything was built</h2>
+<p>Three conditions were fixed before the first line of code. None of them is the kind of thing
+you can bolt on later; each one shapes the design from the start.</p>
+
+<h3>1. Sound is not available</h3>
+<p>I am deaf. A game that answers you with sound is a game I cannot enjoy. Adding effects and
+telling myself "I can't hear it, but it probably feels good" would not have been honest work.</p>
+<p>So sound was ruled out at the start — not as something missing, but as
+<strong>a design problem: make the feedback work with vision alone.</strong></p>
+
+<h3>2. Keep maintenance to a minimum</h3>
+<p>I am a beginner at programming. If something breaks, there is no guarantee I can find the
+cause and fix it. I am also job-hunting with no income, so a server with a monthly bill is out
+of reach.</p>
+<p>Put those two together and there is only one answer. <strong>Do not build anything that can
+break.</strong></p>
+<p>No server at all. No login, no database, no external API. Saves live in the browser. The only
+thing loaded from outside is a single web font.</p>
+<p>This was not about taking the easy road. It was about <strong>keeping the whole thing inside
+what I can actually handle</strong>. A server you do not have cannot go down, and a service you
+do not depend on cannot change its terms underneath you. Published and left alone, it will very
+likely still work in a few years.</p>
+
+<h3>3. It has to be usable by me</h3>
+<p>Accessibility could not be the thing I added if there was time left over. I am the person it
+affects, so putting it off would have meant putting myself off. It went in from the beginning.</p>
+
+<hr>
+
+<h2>Decision 1: what replaces the sound</h2>
+<p>The feel of a tap is usually carried by audio. Remove it and a hole opens. Something has to
+fill it.</p>
+<p>The answer turned out to be <strong>three responses of different kinds, layered on one
+action</strong>. A tap produces all of these at once:</p>
+<ul>
+  <li><strong>The crystal swells</strong> — the thing you touched reacts (standing in for the feel of contact)</li>
+  <li><strong>Shards scatter</strong> — they fly outward from the point you touched (evidence that force was applied)</li>
+  <li><strong>A number lifts away</strong> — "+120" floats up and fades (confirmation of the result)</li>
+</ul>
+<p>All three are visual, but each carries a different meaning. Miss one and the other two still
+land, so the response never disappears entirely.</p>
+<p>The floating number is outlined, because the background colour changes with every seam and
+without an outline it becomes unreadable against certain ones.</p>
+
+<h2>Decision 2: never say it with colour alone</h2>
+<p>Green for affordable, grey for not — a common pattern, and invisible to some people.</p>
+<p>Affordable buildings get <strong>a "▸" in front of the price</strong>. The border changes and
+so does the brightness. With no colour perception at all, the symbol and the shape still say it.</p>
+<p>The same thinking runs through the rest: the selected setting carries a tick, and pausing
+dims the whole screen <em>and</em> prints the word. By the end there was nothing left that was
+signalled by colour alone.</p>
+
+<h2>Decision 3: text size moves everything</h2>
+<p>Text-size controls are common, but they often scale the body copy and leave the numbers and
+buttons where they were.</p>
+<p>Here, <strong>one CSS custom property scales every piece of text on the page.</strong></p>
+<blockquote>
+<p>A multiplier called <code>--fs</code> is defined once, and every size is written as
+<code>calc(14px * var(--fs))</code>. The four buttons set that multiplier to 0.92, 1, 1.14 or
+1.32 and nothing else changes.</p>
+</blockquote>
+<p>The numbers drawn on the canvas read the same multiplier to pick their font size, so the HTML
+and the canvas — two unrelated rendering systems — stay in step from a single value.</p>
+
+<h2>Decision 4: contrast measured, then fixed</h2>
+<p>The first palette looked good and had pale grey text dissolving into the background. Measured,
+some of it came to 2.8:1. The WCAG threshold is 4.5:1.</p>
+<p>Every text colour was measured and the failures were lifted. Then
+<strong>two maximum-contrast schemes were added</strong> — pure black on pure white and the
+reverse. Offering both the palette chosen for looks and the palette chosen for legibility, and
+letting the reader pick, was the resolution.</p>
+
+<h2>Decision 5: the save code, from 312 characters to 47</h2>
+<p>The code for moving to another device started as the game state as JSON, base64-encoded. That
+came to <strong>312 characters</strong> — far too long to handle by hand.</p>
+<p>Looking at it, most of the length was repeated labels like <code>{"crystals":</code>. Fix the
+order of the values and the labels are unnecessary.</p>
+<p>So nineteen numbers are converted to <strong>base 36</strong> (0–9 and a–z) and joined with
+hyphens. The last two characters are a checksum that rejects typos.</p>
+<blockquote>
+<p><code>CC2-16j8-247h-qglk-c-y-2-14-p-e-6-2-0-0-8o-1-7-0-tlqv01-0i</code></p>
+</blockquote>
+<p><strong>312 characters became 47 to 60 — about a sixth.</strong> The old format still loads,
+so nobody who had already saved a code was left stranded.</p>
+
+<h2>Decision 6: five languages, not added afterwards</h2>
+<p>Retrofitting translation means hunting strings scattered through the code and hoping you found
+them all. To avoid that, <strong>every string that reaches the screen lives in one translation
+table.</strong></p>
+<p>It is not only the interface. Building names and descriptions, seam names, event names, the
+full text of the instructions and the wording of the share message are all in there.</p>
+<p>Number abbreviations started out doing the same thing. Japanese counts in ten-thousands,
+English uses K, M and B. <strong>"1万" means nothing to an English reader</strong>, so those were
+recalculated per language rather than translated.</p>
+<p>Putting them side by side exposed a different problem.
+<strong>Every abbreviation assumes the reader knows its convention.</strong> A Japanese reader
+stumbling over "10K" is the same stumble an English reader has over "1万". In a game that is
+almost entirely numbers, a number that gets misread is not a small thing.</p>
+<p>In the end <strong>the abbreviations were removed and the digits left at full length</strong>.
+"600,000,000" is long, but it means the same thing to every reader. The length was handled by
+shrinking the type as the digits accumulate and letting the tight spots wrap. Only the separator
+still follows the language.</p>
+
+<hr>
+
+<h2>Two bugs found along the way</h2>
+
+<h3>Trailing zeros were being eaten</h3>
+<p>"300 billion" was displaying as "3 billion". The cause was in the number formatter.</p>
+<p>A <code>replace(/\.?0+$/, '')</code> meant to tidy up trailing zeros after a decimal point was
+<strong>also stripping them from whole numbers</strong>. "3000" became "3"; "12 million" became
+"1.2 million".</p>
+<p>It had been there since the first version and was easy to miss, because small numbers never
+show the symptom. It now only runs when there is a decimal point.</p>
+
+<h3>One missing character in the HTML</h3>
+<p>Announcements for reaching a new seam and for rebirthing had stopped appearing. A single
+<code>&gt;</code> was missing, and the three lines that followed had been swallowed as attributes
+of the unterminated tag.</p>
+<p>Browsers parse that without complaint, so nothing looked broken. JavaScript only discovered it
+when it went looking for an element and got <code>null</code> back.</p>
+<p>The nastier part was that <strong>the failure took the rest of that function down with
+it</strong>. A separate-looking bug — "the loop counter never increases" — turned out to be the
+same missing character. Symptom and cause were nowhere near each other.</p>
+
+<hr>
+
+<h2>By the numbers</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+  <tbody>
+    <tr><td>HTML files</td><td class="num">1 (about 8,000 lines)</td></tr>
+    <tr><td>Loaded from outside</td><td class="num">one web font</td></tr>
+    <tr><td>Languages</td><td class="num">5</td></tr>
+    <tr><td>Colour schemes</td><td class="num">5 (2 maximum-contrast)</td></tr>
+    <tr><td>Text sizes</td><td class="num">4</td></tr>
+    <tr><td>Seams</td><td class="num">12</td></tr>
+    <tr><td>Save code length</td><td class="num">47–60 characters</td></tr>
+    <tr><td>Server cost</td><td class="num">nothing</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Afterwards</h2>
+<p>Working without sound began as something I could not do. By the end it had become
+<strong>a specific design problem — make the feedback work with vision alone</strong>. It was the
+constraint that led to layering three responses on a single tap; without it I would not have
+looked for that answer.</p>
+<p>Accessibility went the same way. Being the person affected meant it could not be deferred, and
+so it was built in from the start. That cost far less than adding it later would have.</p>
+<p>Refusing to use a server was not only about the bill either. With nothing external to depend
+on, it cannot break once it is published. Opened in a few years, it will most likely still run.</p>
+
+<div class="note cool">
+<p>The game is playable from <a href="index.html">the home page</a> with no sign-up. If you spot
+something, <a href="contact.html">get in touch</a>.</p>
+</div>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>
