@@ -214,6 +214,8 @@ a.card:hover{border-color:var(--cyan)}
 .play .btn{background:rgba(114,226,211,.14);border-color:#72E2D3;color:#72E2D3}
 .play .btn.ghost{background:rgba(255,255,255,.05);border-color:#5A5E67;color:#D3D6DC}
 .play .btn.ghost:hover{color:#fff}
+.play .app-link{margin:18px 0 0;font-size:.92rem;color:#AEB3BC}
+.play .app-link a{color:#72E2D3;text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- the game frame ---------- */
 .stage-wrap{padding-top:26px}
