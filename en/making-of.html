@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Building feedback without sound — making Crystal Cavern</title>
-<meta name="description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping five languages, and two bugs found along the way.">
+<meta name="description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping seventeen languages, and two bugs found along the way.">
 <link rel="canonical" href="https://crystal-cavern.pages.dev/en/making-of">
 <link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/kaihatsu">
 <link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/making-of">
 <link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/kaihatsu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Building feedback without sound — making Crystal Cavern">
-<meta property="og:description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping five languages, and two bugs found along the way.">
+<meta property="og:description" content="A deaf developer builds an idle game with no sound: layering three visual responses on one tap, shrinking a save code from 312 characters to 47, shipping seventeen languages, and two bugs found along the way.">
 <meta property="og:url" content="https://crystal-cavern.pages.dev/en/making-of">
 <meta property="og:site_name" content="Crystal Cavern">
 <meta property="og:locale" content="en_US">
@@ -59,7 +59,7 @@
   <div><dt>What it is</dt><dd>An idle game that runs in a browser — one HTML file, roughly 8,000 lines</dd></div>
   <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, Canvas 2D. No framework, no build step</dd></div>
   <div><dt>External dependencies</dt><dd>One web font. No server, no database, no API</dd></div>
-  <div><dt>Languages</dt><dd>English, 日本語, 简体中文, 한국어, Español</dd></div>
+  <div><dt>Languages</dt><dd>Seventeen, chosen automatically from the device</dd></div>
   <div><dt>When</dt><dd>September 2026</dd></div>
 </dl>
 
@@ -148,7 +148,7 @@ hyphens. The last two characters are a checksum that rejects typos.</p>
 <p><strong>312 characters became 47 to 60 — about a sixth.</strong> The old format still loads,
 so nobody who had already saved a code was left stranded.</p>
 
-<h2>Decision 6: five languages, not added afterwards</h2>
+<h2>Decision 6: every string in one place</h2>
 <p>Retrofitting translation means hunting strings scattered through the code and hoping you found
 them all. To avoid that, <strong>every string that reaches the screen lives in one translation
 table.</strong></p>
@@ -165,6 +165,10 @@ almost entirely numbers, a number that gets misread is not a small thing.</p>
 "600,000,000" is long, but it means the same thing to every reader. The length was handled by
 shrinking the type as the digits accumulate and letting the tight spots wrap. Only the separator
 still follows the language.</p>
+<p>It started with five languages. <strong>Going to seventeen later meant adding to that one table and
+nothing else.</strong> At the same time the in-game language switch went away: the game now simply
+appears in the language of the device, so nobody has to find a setting, and nobody can pick a language
+they cannot read and get stuck.</p>
 
 <hr>
 
@@ -197,7 +201,7 @@ same missing character. Symptom and cause were nowhere near each other.</p>
   <tbody>
     <tr><td>HTML files</td><td class="num">1 (about 8,000 lines)</td></tr>
     <tr><td>Loaded from outside</td><td class="num">one web font</td></tr>
-    <tr><td>Languages</td><td class="num">5</td></tr>
+    <tr><td>Languages</td><td class="num">17</td></tr>
     <tr><td>Colour schemes</td><td class="num">5 (2 maximum-contrast)</td></tr>
     <tr><td>Text sizes</td><td class="num">4</td></tr>
     <tr><td>Seams</td><td class="num">12</td></tr>

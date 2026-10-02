@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>音を使わずに、手応えを作る — 結晶洞窟の開発記録</title>
-<meta name="description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、5言語対応の作り方、見つけた2つのバグ。">
+<meta name="description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、17言語対応の作り方、見つけた2つのバグ。">
 <link rel="canonical" href="https://crystal-cavern.pages.dev/kaihatsu">
 <link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/kaihatsu">
 <link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/making-of">
 <link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/kaihatsu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="音を使わずに、手応えを作る — 結晶洞窟の開発記録">
-<meta property="og:description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、5言語対応の作り方、見つけた2つのバグ。">
+<meta property="og:description" content="聴覚障害のある制作者が、音をいっさい使わない放置ゲームを作った記録。視覚だけで手応えを成立させる設計、セーブコードを312文字から47文字に縮めた方法、17言語対応の作り方、見つけた2つのバグ。">
 <meta property="og:url" content="https://crystal-cavern.pages.dev/kaihatsu">
 <meta property="og:site_name" content="結晶洞窟">
 <meta property="og:locale" content="ja_JP">
@@ -59,7 +59,7 @@
   <div><dt>作ったもの</dt><dd>ブラウザで動く放置ゲーム（HTML 1ファイル、約8,000行）</dd></div>
   <div><dt>使った技術</dt><dd>HTML / CSS / JavaScript / Canvas 2D。フレームワークもビルドツールも使っていません</dd></div>
   <div><dt>外部への依存</dt><dd>Webフォント1つだけ。サーバーもデータベースもAPIもありません</dd></div>
-  <div><dt>対応言語</dt><dd>日本語・English・简体中文・한국어・Español の5言語</dd></div>
+  <div><dt>対応言語</dt><dd>17言語（端末の言語で自動的に表示）</dd></div>
   <div><dt>期間</dt><dd>2026年9月（設計と実装）</dd></div>
 </dl>
 
@@ -118,12 +118,13 @@
 </blockquote>
 <p><strong>312文字が47〜60文字になりました。約6分の1です。</strong>古い形式のコードも読めるようにしてあるので、すでに控えを取っていた人が困ることはありません。</p>
 
-<h2>判断6：5言語を、後から足さなかった</h2>
+<h2>判断6：翻訳を1か所に集めた</h2>
 <p>多言語対応を後から足すと、文章がコードのあちこちに散らばっていて、全部拾い出す作業になります。それを避けるため、<strong>表示される文字をすべて1か所の翻訳テーブルに集めました。</strong></p>
 <p>翻訳したのはUIだけではありません。設備の名前と説明、鉱脈の名前、イベントの名前、遊び方の全文、共有用の文章まで含みます。</p>
 <p>数字の単位も、はじめは言語ごとに変えていました。日本語は万・億・兆、英語は K・M・B。<strong>「1万」を英語話者に見せても伝わらない</strong>からです。</p>
 <p>ところが実際に並べてみると、別の問題が見えました。<strong>どの単位も、読む人がその約束ごとを知っていることを前提にしている</strong>のです。日本語話者が「10K」で一瞬つまずくのと同じことが、英語話者の「1万」でも起きます。数字を読み違えるゲームで、数字が読み違えられては話になりません。</p>
 <p>最終的に<strong>単位をやめ、桁をそのまま出す</strong>ことにしました。「600,000,000」は長いけれど、どの言語の読者にとっても同じ意味です。長さのほうは、桁数に応じて文字を小さくし、収まらない箇所は折り返すことで解決しました。区切り記号だけは各言語の標準に合わせています。</p>
+<p>はじめは5言語でした。その後、<strong>17言語に増やしたときも、このテーブルに言語を足すだけで済みました。</strong>同時に、ゲームの中にあった言語の切り替えをやめ、端末の言語で自動的に表示するようにしました。遊ぶ人が言語を選ぶ手間がなくなり、選び間違えて読めなくなることもありません。</p>
 
 <hr>
 
@@ -148,7 +149,7 @@
   <tbody>
     <tr><td>HTMLファイル</td><td class="num">1個（約8,000行）</td></tr>
     <tr><td>外部から読み込むもの</td><td class="num">Webフォント1つだけ</td></tr>
-    <tr><td>対応言語</td><td class="num">5</td></tr>
+    <tr><td>対応言語</td><td class="num">17</td></tr>
     <tr><td>配色</td><td class="num">5（うち高コントラスト2）</td></tr>
     <tr><td>文字サイズ</td><td class="num">4段階</td></tr>
     <tr><td>鉱脈</td><td class="num">12</td></tr>
