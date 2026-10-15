@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>なぜ「音のないゲーム」を、AIと作ったのか — 結晶洞窟</title>
+<meta name="description" content="プログラミング未経験の制作者が、ほぼAIだけで放置ゲームとiPhoneアプリを作った理由と、やってみて分かったこと。">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/kikkake">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="なぜ「音のないゲーム」を、AIと作ったのか — 結晶洞窟">
+<meta property="og:description" content="プログラミング未経験の制作者が、ほぼAIだけで放置ゲームとiPhoneアプリを作った理由と、やってみて分かったこと。">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/kikkake">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="結晶洞窟">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/index.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">制作の話</p><h1>なぜ「音のないゲーム」を、AIと作ったのか</h1><p class="lede">プログラミング未経験の制作者が、ほぼAIだけで放置ゲームとiPhoneアプリを作った理由と、やってみて分かったこと。</p></div></div><div class="wrap"><div class="prose">
+<p>結晶洞窟は、プログラミングをしたことがない私が、AIに手伝ってもらいながら作ったゲームです。このページでは、なぜこのゲームを作ったのか、AIとどうやって作ったのか、やってみて何が大変だったのかを書きます。設計の細かい話は<a href="kaihatsu.html">開発記録</a>にまとめています。</p>
+
+<h2>作りたかったのは、3つ</h2>
+<p>作りはじめる前に考えていたことは、次の3つでした。</p>
+<ul>
+  <li><strong>ユニバーサルデザインのゲームにしたい。</strong>耳が聞こえる・聞こえない、目がいい・見えにくい、に関係なく、同じように遊べるもの</li>
+  <li><strong>老若男女が、かんたんに遊べるものにしたい。</strong>説明を読まなくても、触ればなんとなく分かるもの</li>
+  <li><strong>プログラミング未経験のまま、AIをフル活用して作ってみたい。</strong>自分ひとりで、どこまで形にできるか試したかった</li>
+</ul>
+<p>音を使わないことも、文字を大きくできることも、この3つから自然に決まっていきました。</p>
+
+<h2>音がないのは、困っていたからではありません</h2>
+<p>私には聴覚障害があります。ただ、正直に書くと、これまでゲームで「音が聞こえなくて困った」と強く感じたことは、あまりありません。そこまで気にしていなかった、というのが本当のところです。</p>
+<p>それでも自分で作るとなると、話が変わりました。自分には聞こえない効果音を入れて、「たぶんいい感じに鳴っているだろう」と想像しながら作るのは、どうしても落ち着きませんでした。それなら最初から音を使わずに、見るだけで手応えがあるように作るほうが自然だと思いました。</p>
+<p>音がないことには、作ってから気づいた良さもあります。電車の中でも、夜中でも、周りを気にせず遊べます。耳が聞こえる人にとっても、聞こえない人にとっても、まったく同じ体験になります。</p>
+
+<h2>「誰でも」は、特定の誰かではありませんでした</h2>
+<p>「老若男女が遊べるゲーム」と言いながら、作っているとき、特定の誰かの顔を思い浮かべていたわけではありません。だからこそ、「このゲームを何も知らない人が、はじめて触っても迷わないか」を基準にしました。</p>
+<ul>
+  <li><strong>操作はタップだけ。</strong>画面の真ん中の結晶を押せば、それで遊べます</li>
+  <li><strong>急かさない。</strong>時間制限も、失敗も、ゲームオーバーもありません。閉じておけば、そのあいだも結晶が貯まります</li>
+  <li><strong>いつでも止められる。</strong>一時停止を押せば、本当に何も増えなくなります</li>
+  <li><strong>読みやすさを自分で選べる。</strong>文字の大きさは4段階、配色は5種類から選べます。選び方は<a href="settei.html">文字の大きさと配色の選び方</a>に書きました</li>
+</ul>
+
+<h2>AIがなければ、作っていませんでした</h2>
+<p>これははっきり言えます。AIがなければ、このゲームは作っていませんでした。プログラムを一から勉強して作るのは、私には現実的ではなかったからです。</p>
+<p>実際の作り方は、こんな流れでした。</p>
+<ol>
+  <li>「こういうゲームにしたい」「ここをこう直したい」と、AIに日本語で伝える</li>
+  <li>AIがプログラムを書く</li>
+  <li>自分のパソコン（Windows）とiPhoneで、実際に動かして確かめる</li>
+  <li>おかしいところがあれば、画面のスクリーンショットを撮ってAIに見せ、直してもらう</li>
+</ol>
+<p>Mac も iPad も持っていません。iPhoneアプリを作るには普通 Mac が必要ですが、インターネット上でアプリを組み立ててくれるサービスを使って、Windows と iPhone だけで App Store に出すところまでたどり着きました。</p>
+<p>やってみて一番驚いたのは、<strong>ほぼAIだけで、ここまで作れるんだ</strong>ということです。100％ではありません。何を作るか、音を使わないか、どの案にするか、いつ公開するかは、全部自分で決めました。それでも、プログラムを書く部分は、ほとんどAIがやってくれました。</p>
+
+<h2>一番大変だったのは、バグの修正</h2>
+<p>一番大変だったのは、バグ（不具合）の修正です。AIはプログラムを書くのは速いのですが、書いたものが最初から完璧とは限りません。</p>
+<p>たとえば、こんなことがありました。</p>
+<ul>
+  <li>「3000億」と出るはずの数字が「3億」と表示されていた。数字を整える処理が、整数の末尾のゼロまで消していました</li>
+  <li>演出が急に出なくなった。原因は、プログラムの中の記号が1文字足りないことでした。見た目には何も壊れていないので、気づくまでに時間がかかりました</li>
+  <li>App Store に出したあと、中国のプレイヤーの方から「結晶が42桁になると、数字が何行にもなって下のボタンが押しにくい」とレビューをいただきました。とても大きな数字を短く表示するように直し、次の版で公開しました</li>
+</ul>
+<p>大変だった理由は、<strong>AIが「直りました」と言っても、本当に直ったかは実際に動かしてみるまで分からない</strong>ことです。表に出ている症状と、本当の原因が離れていることもあります。だから、直してもらったら必ず自分の端末で確かめる、気になるところは「念のために確認」してもらう、ということを繰り返しました。</p>
+
+<h2>やってみて思うこと</h2>
+<p>AIは、なんでも自動でやってくれる魔法ではありませんでした。けれど、プログラミングを知らなくても、<strong>作りたいものをはっきり言葉にして、出来上がったものを自分の目で確かめる</strong>ことができれば、ゲームを形にして、App Store に並べるところまで行けました。</p>
+<p>同じように「作ってみたいけれど、プログラミングは分からない」と思っている方の参考になればうれしいです。ゲームはこのサイトの<a href="index.html">トップページ</a>からそのまま遊べます。</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="kikkake.html">作ったきっかけ</a></li><li><a href="settei.html">読みやすさの設定</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>

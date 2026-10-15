@@ -22,8 +22,10 @@
   --rose:#96002B;       /*  7.6:1 — warnings */
   --shadow:0 1px 2px rgba(20,22,26,.06), 0 8px 22px rgba(20,22,26,.05);
 
-  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
-  --font-display:"Zen Antique",Georgia,serif;
+  /* Japanese fallbacks first, so that if the web font does not load, kanji
+     still take their Japanese shapes (選・直 differ in Chinese fonts) */
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans JP","Noto Sans CJK JP",system-ui,sans-serif;
+  --font-display:"Zen Antique","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP","Noto Serif CJK JP",Georgia,serif;
   --font-num:"Chivo Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   --measure:34rem;
@@ -289,3 +291,10 @@ footer.site ul{display:flex;gap:6px 20px;list-style:none;margin:0 0 16px;padding
 footer.site a{color:var(--ink-faint);text-decoration:none}
 footer.site a:hover{color:var(--ink);text-decoration:underline}
 footer.site p{margin:0;line-height:1.85}
+
+/* ---------- screenshots of the colour schemes (settei.html) ---------- */
+.skins{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:14px;margin:6px 0 24px}
+.skins figure{margin:0;min-width:0}
+.skins img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line-soft)}
+.skins figcaption{font-size:.8125rem;line-height:1.6;color:var(--ink-faint);margin-top:7px}
+.skins figcaption b{display:block;color:var(--ink);font-size:.875rem}

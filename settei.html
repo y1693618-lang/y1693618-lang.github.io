@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>文字の大きさと配色の選び方 — 結晶洞窟</title>
+<meta name="description" content="結晶洞窟の「文字の大きさ」と「背景と配色」の使い方と、どんな人・どんな場面にどの設定が合うかの目安。">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/settei">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="文字の大きさと配色の選び方 — 結晶洞窟">
+<meta property="og:description" content="結晶洞窟の「文字の大きさ」と「背景と配色」の使い方と、どんな人・どんな場面にどの設定が合うかの目安。">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/settei">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="結晶洞窟">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/index.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">読みやすさの設定</p><h1>文字の大きさと配色の選び方</h1><p class="lede">結晶洞窟の「文字の大きさ」と「背景と配色」の使い方と、どんな人・どんな場面にどの設定が合うかの目安。</p></div></div><div class="wrap"><div class="prose">
+<p>結晶洞窟では、文字の大きさと画面の配色を自分で選べます。このページでは、設定の場所と、どんなときにどれを選ぶとよいかの目安をまとめました。</p>
+
+<h2>設定の場所</h2>
+<p>ゲームの「<strong>メニュー</strong>」タブを開くと、「<strong>文字の大きさ</strong>」と「<strong>背景と配色</strong>」があります。ボタンを押すと、その場ですぐに切り替わります。選んだ設定は自動で保存されるので、次に開いたときもそのままです。</p>
+<p>iPhone 本体の「文字サイズ」の設定とは別に、ゲームの中で選ぶ仕組みです。</p>
+
+<h2>文字の大きさ（4段階）</h2>
+<p>「小・標準・大・特大」の4段階です。本文だけでなく、結晶の数、ボタン、タップしたときに浮かぶ「+100」のような数字まで、<strong>画面のすべての文字が一緒に</strong>大きくなります。</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>大きさ</th><th>こんなときに</th></tr></thead>
+  <tbody>
+    <tr><td>小</td><td>一度にたくさんの設備を見渡したいとき</td></tr>
+    <tr><td>標準</td><td>まずはこれ。迷ったらこのまま</td></tr>
+    <tr><td>大</td><td>少し離して持ちたいとき、小さい文字が見えにくいとき</td></tr>
+    <tr><td>特大</td><td>読むのがつらいとき。画面の狭い iPhone でも、文字がはみ出さないように確かめてあります</td></tr>
+  </tbody>
+</table></div>
+
+<h2>背景と配色（5種類）</h2>
+<p>配色は5種類です。上の3つは雰囲気を楽しむ配色、下の2つはコントラストを最大にした「高コントラスト」です。どの配色でも、文字が背景に溶けないように、文字と背景の明るさの差を測って調整しています。</p>
+<div class="skins">
+  <figure><img src="img/skin-cave.jpg" width="390" height="640" alt="配色「洞窟」の画面。暗い茶色の背景に金色の結晶"><figcaption><b>洞窟</b>はじめの配色。暗い茶色に金色</figcaption></figure>
+  <figure><img src="img/skin-sea.jpg" width="390" height="640" alt="配色「深海」の画面。深い青緑の背景"><figcaption><b>深海</b>深い青緑。落ち着いた色</figcaption></figure>
+  <figure><img src="img/skin-dusk.jpg" width="390" height="640" alt="配色「夕闇」の画面。紫がかった暗い背景"><figcaption><b>夕闇</b>紫がかった暗い色</figcaption></figure>
+  <figure><img src="img/skin-hcd.jpg" width="390" height="640" alt="配色「高コントラスト（黒）」の画面。真っ黒の背景に白い文字"><figcaption><b>高コントラスト（黒）</b>黒地に白い文字</figcaption></figure>
+  <figure><img src="img/skin-hcl.jpg" width="390" height="640" alt="配色「高コントラスト（白）」の画面。白い背景に黒い文字"><figcaption><b>高コントラスト（白）</b>白地に黒い文字</figcaption></figure>
+</div>
+<p>目安は次のとおりです。</p>
+<ul>
+  <li><strong>夜や暗い部屋で遊ぶとき</strong>：洞窟・深海・夕闇、または高コントラスト（黒）。画面がまぶしくなりにくい配色です</li>
+  <li><strong>屋外や明るい場所で遊ぶとき</strong>：高コントラスト（白）。日差しの中でも文字が読みやすくなります</li>
+  <li><strong>文字が背景に溶けて見えるとき</strong>：高コントラスト（黒）か（白）。文字と背景の差がいちばん大きい配色です</li>
+</ul>
+
+<h2>色が見分けにくい方へ</h2>
+<p>このゲームは、大事な情報を<strong>色だけで伝えない</strong>ようにしています。たとえば、買える設備には値段の前に「▸」の印が付きます。掘る量の「×1・×10・×MAX」は、選んでいるものが太字と太い下線で示されます。どの配色を選んでも、色以外の印で区別できます。</p>
+
+<h2>動きを減らしたい方へ</h2>
+<p>iPhone の「設定」→「アクセシビリティ」→「動作」で「視差効果を減らす」をオンにすると、ボーナスの光る球が上下に揺れずに、まっすぐ横切るようになります。タップしたときの結晶のふくらみも小さくなります。ゲームの中で設定する必要はありません。</p>
+
+<h2>ちなみに、制作者の設定は</h2>
+<p>私自身は、文字は「<strong>標準</strong>」、配色は「<strong>深海</strong>」で遊んでいます。特別な理由はなく、見たときに「これがいいな」と思ったからです。</p>
+<p>読みやすさの設定に、正解はありません。迷ったら、まずは「標準」と「洞窟」で始めて、読みにくいと感じたら大きさや配色を変えてみてください。好きな色で遊ぶのがいちばんです。</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="kikkake.html">作ったきっかけ</a></li><li><a href="settei.html">読みやすさの設定</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>
