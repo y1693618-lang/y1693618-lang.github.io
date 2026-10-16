@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mac を持たずに、Windows と iPhone だけでアプリを出すまで — 結晶洞窟</title>
+<meta name="description" content="Mac も iPad も持っていない制作者が、Windows パソコンと iPhone だけで結晶洞窟を App Store に出すまでに使ったものと、その流れ。">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/mac-nashi">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/mac-nashi">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/without-a-mac">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/mac-nashi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac を持たずに、Windows と iPhone だけでアプリを出すまで — 結晶洞窟">
+<meta property="og:description" content="Mac も iPad も持っていない制作者が、Windows パソコンと iPhone だけで結晶洞窟を App Store に出すまでに使ったものと、その流れ。">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/mac-nashi">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="結晶洞窟">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/without-a-mac.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">制作の話</p><h1>Mac を持たずに、Windows と iPhone だけでアプリを出すまで</h1><p class="lede">Mac も iPad も持っていない制作者が、Windows パソコンと iPhone だけで結晶洞窟を App Store に出すまでに使ったものと、その流れ。</p></div></div><div class="wrap"><div class="prose">
+<p>iPhone のアプリを作るには、ふつう Mac が必要だと言われます。けれど私は、Mac も iPad も持っていません。手元にあるのは Windows のパソコンと iPhone だけです。それでも、結晶洞窟は App Store に並んでいます。</p>
+<p>このページでは、Mac を使わずにアプリを出すまでに何を使い、どんな順番で進めたのかを書きます。なぜこのゲームを作ったのかは、<a href="kikkake.html">作ったきっかけ</a>に書きました。</p>
+
+<h2>「Mac がないと無理」ではなかった</h2>
+<p>最初は、iPhone アプリは Mac がなければ作れないものだと思っていました。そこでAIに「Mac を持っていなくても iPhone のアプリは出せますか」と聞いてみました。返ってきた答えは、<strong>インターネット上の Mac を借りて、アプリを組み立ててくれるサービスがある</strong>というものでした。</p>
+<p>自分の手元に Mac がなくても、組み立てる作業だけをネットの向こうの Mac にやってもらえばいい、ということです。これを知って、iPhone アプリにできると分かりました。</p>
+<p>作り始めてから、アプリが完成するまでは<strong>4日</strong>でした。</p>
+
+<h2>使ったもの</h2>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>名前と使いみち</th><th>費用</th></tr></thead>
+  <tbody>
+    <tr><td><b>Windows のパソコン</b><span class="desc">GitHub へのファイルのアップロード、ブラウザでゲームを動かして確かめる</span></td><td>持っていたもの</td></tr>
+    <tr><td><b>iPhone</b><span class="desc">完成前のアプリを入れて、実際の動きを確かめる</span></td><td>持っていたもの</td></tr>
+    <tr><td><b>AI</b><span class="desc">プログラムを書く、手順を教えてもらう、エラーの意味を聞く</span></td><td>—</td></tr>
+    <tr><td><b>GitHub</b><span class="desc">ゲームとアプリのファイルをインターネット上に置いておく場所</span></td><td>無料</td></tr>
+    <tr><td><b>Codemagic</b><span class="desc">ネット上の Mac を借りて、アプリを組み立てて Apple に送ってもらう</span></td><td>個人の利用なら毎月500分まで無料</td></tr>
+    <tr><td><b>Apple Developer Program</b><span class="desc">App Store にアプリを出すための開発者登録</span></td><td>年99米ドル</td></tr>
+  </tbody>
+</table></div>
+<p class="small">Apple Developer Program は、日本の App Store にある Apple Developer アプリから登録すると12,800円と表示されます。費用は2026年10月に調べたものです。変わることがあるので、登録するときにそれぞれの画面で確かめてください。</p>
+<p>App Store に出すための情報の入力や審査の申し込みは、Apple の「App Store Connect」というページで行います。これはブラウザで開けるので、Windows のパソコンからそのまま使えました。</p>
+
+<h2>全体の流れ</h2>
+<ol>
+  <li><strong>ゲームを作る。</strong>結晶洞窟は、もともとブラウザで遊べるゲームです。AIにプログラムを書いてもらい、Windows のブラウザで遊んで確かめながら作りました</li>
+  <li><strong>アプリの「外側」を作る。</strong>ゲームをそのまま包んで、iPhone のアプリとして動かすための部分です。ここもAIに書いてもらいました。中身のゲームは、ブラウザ版と同じものです</li>
+  <li><strong>ファイルを GitHub に置く。</strong>ブラウザからファイルをアップロードするだけです</li>
+  <li><strong>Apple の開発者登録をして、準備をする。</strong>Apple Developer Program に登録し、App Store Connect にアプリの枠と、Codemagic がアプリを Apple に送るための鍵を作ります</li>
+  <li><strong>Codemagic で組み立てる。</strong>ボタンを押すと、ネット上の Mac がアプリを組み立て、Apple に送ってくれます</li>
+  <li><strong>自分の iPhone で確かめる。</strong>Apple の「TestFlight」というアプリを使うと、公開前のアプリを自分の iPhone に入れて試せます</li>
+  <li><strong>App Store Connect で入力して、審査に出す。</strong>アプリの説明文、スクリーンショット、プライバシーポリシーのページ、広告で使う情報の申告などを入力して、審査を申し込みます</li>
+  <li><strong>審査に通ったら公開。</strong></li>
+</ol>
+<p>直したいところが出てきたら、ファイルを直して GitHub に置き直し、もう一度 Codemagic で組み立てます。ゲームの中身はブラウザ版とアプリ版で同じファイルなので、ゲームを直すときは、同じファイルをサイトとアプリの両方に置けばよく、アプリ側のプログラムを直す必要はありません。アプリ版は、組み立て直して審査に通ったあとに反映されます。</p>
+
+<h2>Mac がないぶん、工夫したところ</h2>
+<ul>
+  <li><strong>Xcode を自分では使わない。</strong>Mac でアプリを作るときに使う「Xcode」というソフトは、Windows では動きません。そこで、アプリの設計図を短い文字のファイルにしておき、組み立てるたびに、ネット上の Mac がその設計図からプロジェクトを作るようにしました</li>
+  <li><strong>動きの確認は実機で。</strong>Mac があれば、シミュレーター（画面の中で動く iPhone）で試せますが、それができません。そのかわり、TestFlight で自分の iPhone に入れて確かめました</li>
+  <li><strong>組み立ての回数に気をつける。</strong>Codemagic の無料の時間には、毎月の上限があります。直すところは一度にまとめてから組み立てると、無料の時間を節約できます</li>
+</ul>
+
+<h2>手続きでつまずかなかったのは、AIに聞きながら進めたから</h2>
+<p>振り返ってみると、手続きでつまずいたところは特にありませんでした。開発者登録も、Codemagic の設定も、App Store Connect の入力も、わからないところはその場でAIに聞きながら進めたので、止まらずにスムーズに進められました。</p>
+<p>もしAIがなければ、どこかでつまずいたまま、先に進めなかったと思います。</p>
+
+<h2>審査のこと</h2>
+<p>結晶洞窟は、これまでの審査で一度もリジェクト（審査で落とされること）されたことがありません。最初の公開のあとも、17言語への対応（1.1）と、大きな数字の表示の改善（1.2）で新しい版を出しましたが、どちらもそのまま通りました。</p>
+
+<h2>公開されたとき</h2>
+<p>審査に通って App Store に並んだときは、<strong>ほっとしました</strong>。</p>
+
+<h2>Mac がなくてもアプリを作りたい人へ</h2>
+<p>私のようにプログラミングをしたことがなくても、AIを活用すればアプリは作れます。Mac がなくても、Windows のパソコンと iPhone があれば、App Store に出すところまで行けました。頑張れば作れます。</p>
+<p>結晶洞窟は、このサイトの<a href="index.html">トップページ</a>からブラウザでそのまま遊べます。</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="koumyaku.html">鉱脈図鑑</a></li><li><a href="setsubi.html">設備図鑑</a></li><li><a href="saikessho.html">再結晶のしくみ</a></li><li><a href="settei.html">読みやすさの設定</a></li><li><a href="shitsumon.html">よくある質問</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="kikkake.html">作ったきっかけ</a></li><li><a href="mac-nashi.html">Macなしでアプリを出すまで</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>

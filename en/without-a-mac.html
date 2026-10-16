@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shipping an iPhone app without a Mac — Crystal Cavern</title>
+<meta name="description" content="The author owns no Mac and no iPad. What the author used to put Crystal Cavern on the App Store with just a Windows PC and an iPhone, and the order it all happened in.">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/en/without-a-mac">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/mac-nashi">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/without-a-mac">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/mac-nashi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shipping an iPhone app without a Mac — Crystal Cavern">
+<meta property="og:description" content="The author owns no Mac and no iPad. What the author used to put Crystal Cavern on the App Store with just a Windows PC and an iPhone, and the order it all happened in.">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/en/without-a-mac">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crystal Cavern">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../mac-nashi.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">The story</p><h1>Shipping an iPhone app without a Mac</h1><p class="lede">The author owns no Mac and no iPad. What the author used to put Crystal Cavern on the App Store with just a Windows PC and an iPhone, and the order it all happened in.</p></div></div><div class="wrap"><div class="prose">
+<p>People usually say you need a Mac to make an iPhone app. I don’t have a Mac, or an iPad. All I have is a Windows PC and an iPhone. Even so, Crystal Cavern is on the App Store.</p>
+<p>This page covers what I used to get there without a Mac, and the order I did things in. Why I made the game is in <a href="story.html">Why no sound</a>.</p>
+
+<h2>“No Mac, no app” turned out to be wrong</h2>
+<p>At first I assumed iPhone apps simply couldn’t be made without a Mac. So I asked an AI: “Can I publish an iPhone app if I don’t own a Mac?” The answer was that <strong>there are services that rent you a Mac over the internet and build the app for you</strong>.</p>
+<p>In other words, I didn’t need a Mac on my desk. I only needed a Mac somewhere online to do the building. That told me an iPhone app was possible.</p>
+<p>From starting the project to having a finished app took <strong>four days</strong>.</p>
+
+<h2>What I used</h2>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>Tool and use</th><th>Cost</th></tr></thead>
+  <tbody>
+    <tr><td><b>Windows PC</b><span class="desc">Uploading and downloading files, and playing the game in a browser to check it</span></td><td>Already owned</td></tr>
+    <tr><td><b>iPhone</b><span class="desc">Installing test builds of the app and checking how it really behaves</span></td><td>Already owned</td></tr>
+    <tr><td><b>AI</b><span class="desc">Writing the code, explaining each step, telling me what error messages meant</span></td><td>—</td></tr>
+    <tr><td><b>GitHub</b><span class="desc">An online place to keep the game’s and the app’s files</span></td><td>Free</td></tr>
+    <tr><td><b>Codemagic</b><span class="desc">Builds the app on a Mac online and sends it to Apple</span></td><td>Free for personal use, up to 500 minutes a month</td></tr>
+    <tr><td><b>Apple Developer Program</b><span class="desc">The developer membership needed to publish on the App Store</span></td><td>US$99 a year</td></tr>
+  </tbody>
+</table></div>
+<p class="small">Prices were checked in October 2026 and may change. Please check each service’s own page when you sign up.</p>
+<p>Filling in the store details and sending the app for review happens on Apple’s “App Store Connect” website. It runs in a browser, so it worked fine from Windows.</p>
+
+<h2>The whole process</h2>
+<ol>
+  <li><strong>Make the game.</strong> Crystal Cavern started as a game you play in a browser. The AI wrote the code, and I played it in a browser on Windows to check it as it grew</li>
+  <li><strong>Make the app’s “shell”.</strong> This is the part that wraps the game so it runs as an iPhone app. The AI wrote this too. The game inside is the same one as the browser version</li>
+  <li><strong>Put the files on GitHub.</strong> That’s just uploading files in a browser</li>
+  <li><strong>Get set up with Apple.</strong> Join the Apple Developer Program, then create the app’s entry and a key for Codemagic in App Store Connect, so Codemagic can send the app to Apple</li>
+  <li><strong>Build it with Codemagic.</strong> Press a button, and a Mac online builds the app and sends it to Apple</li>
+  <li><strong>Try it on my own iPhone.</strong> Apple’s TestFlight app lets you install an app on your own iPhone before it is released</li>
+  <li><strong>Fill in App Store Connect and submit.</strong> The description, screenshots, a privacy policy page, a declaration of what data the ads use, and so on. Then send it for review</li>
+  <li><strong>Release it once it passes review.</strong></li>
+</ol>
+<p>When something needs fixing, I fix the files, upload them to GitHub again and run another build on Codemagic. The browser version and the app use the very same game file. So to change the game, I put the same file on the site and in the app project, with no change to the app’s own code. The app version updates once it’s rebuilt and passes review.</p>
+
+<h2>What I did differently without a Mac</h2>
+<ul>
+  <li><strong>No Xcode on my side.</strong> Xcode, the program normally used on a Mac to make apps, doesn’t run on Windows. Instead, the app’s design is kept in a short text file, and on every build the Mac online turns that file into a project</li>
+  <li><strong>Test on the real phone.</strong> On a Mac you can test on a simulated iPhone on screen (the Simulator). I can’t do that, so I tested on my own iPhone through TestFlight instead</li>
+  <li><strong>Mind the number of builds.</strong> Codemagic’s free minutes are capped each month. Gathering fixes together into one build saves those minutes</li>
+</ul>
+
+<h2>I didn’t get stuck on the steps because I kept asking the AI</h2>
+<p>Looking back, there was no step in the publishing process where I really got stuck. Developer sign-up, setting up Codemagic, filling in App Store Connect: whenever I didn’t understand something, I asked the AI right then. So things kept moving smoothly.</p>
+<p>Without AI, I think I would have got stuck somewhere and never got past it.</p>
+
+<h2>App review</h2>
+<p>Crystal Cavern has never been rejected in review. I’ve shipped two updates since the first release: 1.1 added support for 17 languages, and 1.2 improved how very large numbers are shown. Both passed straight away.</p>
+
+<h2>When it went live</h2>
+<p>When it passed review and appeared on the App Store, I felt <strong>relieved</strong>.</p>
+
+<h2>If you want to make an app without a Mac</h2>
+<p>Even if you’ve never programmed, like me, you can make an app with the help of AI. With no Mac, only a Windows PC and an iPhone, I got all the way to the App Store. If you keep at it, you can make one too.</p>
+<p>You can play Crystal Cavern right in your browser from this site’s <a href="index.html">front page</a>.</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="seams.html">The twelve seams</a></li><li><a href="buildings.html">Buildings</a></li><li><a href="rebirth.html">How rebirth works</a></li><li><a href="readability.html">Text size and colours</a></li><li><a href="faq.html">FAQ</a></li><li><a href="making-of.html">Making of</a></li><li><a href="story.html">Why no sound</a></li><li><a href="without-a-mac.html">Shipping without a Mac</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>
