@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>再結晶のしくみ — 結晶洞窟</title>
+<meta name="description" content="核の数はどう決まるのか、何が残って何がなくなるのか、新しい鉱脈はどうすれば開くのか。再結晶を数字で説明します。">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/saikessho">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/saikessho">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/rebirth">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/saikessho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再結晶のしくみ — 結晶洞窟">
+<meta property="og:description" content="核の数はどう決まるのか、何が残って何がなくなるのか、新しい鉱脈はどうすれば開くのか。再結晶を数字で説明します。">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/saikessho">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="結晶洞窟">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/rebirth.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">再結晶</p><h1>再結晶のしくみ</h1><p class="lede">核の数はどう決まるのか、何が残って何がなくなるのか、新しい鉱脈はどうすれば開くのか。再結晶を数字で説明します。</p></div></div><div class="wrap"><div class="prose">
+<p>再結晶は、それまでの結晶と設備をすべて手放すかわりに、ずっと効き続ける倍率「核」を手に入れるしくみです。いつ回すかの目安は<a href="kouryaku.html">攻略のコツ</a>にも書きましたが、このページでは、しくみそのものを数字で説明します。</p>
+
+<h2>2つの「採掘量」</h2>
+<p>このゲームには、採掘量の数え方が2つあります。「再結晶」タブの「記録」で、両方を見られます。</p>
+<ul>
+  <li><strong>今回の採掘量</strong>：前回の再結晶から、いままでに掘った量。再結晶すると0に戻ります</li>
+  <li><strong>全期間の採掘量</strong>：はじめて遊んだときから、ずっと数えている合計。<strong>再結晶しても減りません</strong></li>
+</ul>
+<p>核の数も、いまいる鉱脈も、この「全期間の採掘量」で決まります。だから、再結晶をしても、いまいる鉱脈や深度はそのままです。</p>
+
+<h2>核の数の決まり方</h2>
+<p>全期間の採掘量が100万を超えると、再結晶ができるようになります。全期間の採掘量に応じて「持てる核の合計」が決まり、再結晶で手に入るのは、<strong>その合計から、いま持っている核を引いた数</strong>です。</p>
+<div class="table-scroll"><table>
+  <thead><tr><th class="num">全期間の採掘量</th><th class="num">持てる核の合計</th><th class="num">収入の倍率</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1,000,000</td><td class="num">8</td><td class="num">×1.16</td></tr>
+    <tr><td class="num">4,000,000</td><td class="num">16</td><td class="num">×1.32</td></tr>
+    <tr><td class="num">100,000,000</td><td class="num">80</td><td class="num">×2.60</td></tr>
+    <tr><td class="num">600,000,000</td><td class="num">195</td><td class="num">×4.90</td></tr>
+    <tr><td class="num">12,000,000,000</td><td class="num">876</td><td class="num">×18.52</td></tr>
+  </tbody>
+</table></div>
+<p>持てる核の合計は、全期間の採掘量の平方根に比例します。全期間の採掘量が4倍になると、核の合計が2倍になります。核ひとつにつき、タップと毎秒の収入が2%ずつ増えます。</p>
+
+<h2>早めに回しても、核は損をしない</h2>
+<p>この決まり方から、大事なことが1つ分かります。<strong>何回に分けて再結晶しても、最終的に持てる核の合計は変わりません。</strong>核の合計は全期間の採掘量だけで決まるからです。</p>
+<p>たとえば、全期間の採掘量1億で再結晶して80個もらい、そのあと6億まで掘ってもう一度再結晶すると、2回目は115個（195−80）もらえます。最初から6億まで粘って1回で195個もらうのと、合計は同じです。</p>
+<p>ちがうのは、<strong>早めに回すと、そのぶん早く倍率が効きはじめる</strong>ことです。そのかわり、設備を買い直す手間がかかります。進みが遅く感じてきたら回す、くらいの気持ちで大丈夫です。</p>
+
+<h2>なくなるもの、残るもの</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>なくなるもの</th><th>残るもの</th></tr></thead>
+  <tbody>
+    <tr><td>手元の結晶、今回の採掘量</td><td>核、全期間の採掘量</td></tr>
+    <tr><td>すべての設備</td><td>いまいる鉱脈と深度、開いた鉱脈</td></tr>
+    <tr><td>ツルハシと手袋の強化</td><td>記録（タップの回数、拾った光る球など）</td></tr>
+    <tr><td>収入が2倍・5倍になっている途中の効果</td><td>文字の大きさや配色などの設定</td></tr>
+  </tbody>
+</table></div>
+
+<h2>新しい鉱脈の開け方</h2>
+<p>最初の周回では、虹晶までの7つしか掘れません。<strong>いま掘れる一番深い鉱脈にいる状態で再結晶すると、その下の鉱脈が1つ開きます。</strong>そのときは、画面右上のメーターの下に「再結晶すると次の鉱脈が開く」と出ます。</p>
+<p>全部の鉱脈を開くまでの流れを、数字で並べると次のようになります。それぞれの鉱脈にたどり着いたところで、すぐに再結晶した場合です。</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>回</th><th>再結晶する場所</th><th class="num">そのときの全期間の採掘量</th><th class="num">もらえる核</th><th class="num">核の合計</th><th>開く鉱脈</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>虹晶</td><td class="num">6億</td><td class="num">195</td><td class="num">195</td><td>深淵晶</td></tr>
+    <tr><td>2</td><td>深淵晶</td><td class="num">120億</td><td class="num">681</td><td class="num">876</td><td>星核晶</td></tr>
+    <tr><td>3</td><td>星核晶</td><td class="num">3,000億</td><td class="num">3,505</td><td class="num">4,381</td><td>虚空晶</td></tr>
+    <tr><td>4</td><td>虚空晶</td><td class="num">8兆</td><td class="num">18,246</td><td class="num">22,627</td><td>黎明晶</td></tr>
+    <tr><td>5</td><td>黎明晶</td><td class="num">200兆</td><td class="num">90,510</td><td class="num">113,137</td><td>終晶</td></tr>
+  </tbody>
+</table></div>
+<p class="small">表の中の大きな数字は読みやすいように「億」「兆」で書いています。ゲームの画面では、1兆より小さい数は「300,000,000,000」のように桁をそのまま、1兆からは「8.00 × 10<sup>12</sup>」のように表示されます。</p>
+<p>途中で何回か余分に再結晶しても、鉱脈が開くのは「一番深い鉱脈にいるとき」だけです。各鉱脈の色や深さは<a href="koumyaku.html">12の鉱脈図鑑</a>にまとめました。</p>
+
+<h2>アプリ版の「核の増量」</h2>
+<p>iPhone アプリ版の「ボーナス」タブには、「核の増量」があります。短い動画を見ると、次の再結晶でもらえる核が25%増えます。ただ、持てる核の合計は全期間の採掘量で決まるので、ここで多くもらった分は、そのあとの再結晶で少なくなります。「核を先に前借りできる」と考えてください。見るかどうかは自由で、見なくても最後まで遊べます。</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="koumyaku.html">鉱脈図鑑</a></li><li><a href="setsubi.html">設備図鑑</a></li><li><a href="saikessho.html">再結晶のしくみ</a></li><li><a href="settei.html">読みやすさの設定</a></li><li><a href="shitsumon.html">よくある質問</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="kikkake.html">作ったきっかけ</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>

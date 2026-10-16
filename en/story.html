@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Why I made a game with no sound, with AI — Crystal Cavern</title>
+<meta name="description" content="Why someone who had never programmed made an idle game and an iPhone app almost entirely with AI, and what I learned doing it.">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/en/story">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/kikkake">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/story">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/kikkake">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why I made a game with no sound, with AI — Crystal Cavern">
+<meta property="og:description" content="Why someone who had never programmed made an idle game and an iPhone app almost entirely with AI, and what I learned doing it.">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/en/story">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crystal Cavern">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../kikkake.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">The story</p><h1>Why I made a game with no sound, with AI</h1><p class="lede">Why someone who had never programmed made an idle game and an iPhone app almost entirely with AI, and what I learned doing it.</p></div></div><div class="wrap"><div class="prose">
+<p>I had never written a program before Crystal Cavern. I made it with the help of AI. This page is about why I made the game, how I built it with AI, and what turned out to be hard. The design details are in the <a href="making-of.html">making-of</a>.</p>
+
+<h2>Three things I wanted</h2>
+<p>Before I started, I had three things in mind.</p>
+<ul>
+  <li><strong>A game built on universal design.</strong> Something you can play the same way whether or not you can hear, and whether your eyesight is sharp or not</li>
+  <li><strong>Something anyone, of any age, can pick up easily.</strong> You should be able to work it out just by touching it, without reading instructions</li>
+  <li><strong>To see how far I could get with no programming experience, using AI for everything.</strong> I wanted to find out what I could make on my own</li>
+</ul>
+<p>Leaving out sound and letting you enlarge the text both followed naturally from these three.</p>
+
+<h2>No sound, but not because I had struggled</h2>
+<p>I am deaf. To be honest, though, I have never felt strongly that I missed something in a game because I could not hear it. It simply was not something I thought much about.</p>
+<p>Making a game myself was different. Adding sound effects I could not hear, and imagining they probably sounded fine, did not sit right with me. It felt more natural to leave sound out from the start and make the game feel responsive to the eye alone.</p>
+<p>Having no sound turned out to have a benefit I only noticed afterwards. You can play on a train or in the middle of the night without bothering anyone. And it is exactly the same game whether you can hear or not.</p>
+
+<h2>"Anyone" did not mean anyone in particular</h2>
+<p>I said I wanted a game for all ages, but I was not picturing a particular person while I made it. So I used one test instead: would someone who knows nothing about this game get lost the first time they touch it?</p>
+<ul>
+  <li><strong>You only tap.</strong> Press the crystal in the middle and you are playing</li>
+  <li><strong>Nothing rushes you.</strong> No time limits, no failing, no game over. Close it and the crystals keep building up</li>
+  <li><strong>You can stop at any time.</strong> Press Pause and nothing grows at all</li>
+  <li><strong>You choose what reads well.</strong> Four text sizes and five colour schemes. How to choose is in <a href="readability.html">Text size and colours</a></li>
+</ul>
+
+<h2>Without AI, I would not have made it</h2>
+<p>This much is certain: without AI I would not have made this game. Learning to program from scratch was not realistic for me.</p>
+<p>In practice, it went like this:</p>
+<ol>
+  <li>Tell the AI, in Japanese, "I want the game to do this" or "please change this part"</li>
+  <li>The AI writes the code</li>
+  <li>Run it on my own Windows PC and iPhone to check it</li>
+  <li>If something is wrong, take a screenshot, show it to the AI and have it fixed</li>
+</ol>
+<p>I do not own a Mac or an iPad. Making an iPhone app normally needs a Mac, but by using an online service that builds the app for you, I got all the way to the App Store with only Windows and an iPhone.</p>
+<p>What surprised me most was <strong>how much could be made almost entirely by AI</strong>. Not 100%. What to make, whether to use sound, which option to pick, when to release: I decided all of those. But the code itself was nearly all written by AI.</p>
+
+<h2>The hardest part was fixing bugs</h2>
+<p>The hardest part was fixing bugs. AI writes code quickly, but what it writes is not always right the first time.</p>
+<p>A few examples:</p>
+<ul>
+  <li>A number that should have read "300,000,000,000" showed as "300,000,000". The code that tidied numbers up was also removing zeros from the end of whole numbers</li>
+  <li>The pop-up effects suddenly stopped appearing. The cause was a single missing symbol in the code. Nothing looked broken on screen, so it took a while to notice</li>
+  <li>After the app came out, a player in China left a review: once their crystals reached 42 digits, the number filled several lines and pushed the buttons out of easy reach. I changed very large numbers to a short form and released the fix in the next version</li>
+</ul>
+<p>What made it hard is that <strong>even when the AI says "fixed", you do not know it is fixed until you run it yourself</strong>. Sometimes the visible symptom and the real cause are far apart. So I made a habit of checking every fix on my own devices, and of asking the AI to double-check anything I was unsure about.</p>
+
+<h2>Looking back</h2>
+<p>AI was not magic that does everything for you. But even without knowing how to program, <strong>if you can put clearly into words what you want, and check the result with your own eyes</strong>, you can get a game made and onto the App Store.</p>
+<p>I hope this is useful to anyone who would like to make something but does not know how to program. You can play the game from the <a href="index.html">home page</a>.</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="seams.html">The twelve seams</a></li><li><a href="buildings.html">Buildings</a></li><li><a href="rebirth.html">How rebirth works</a></li><li><a href="readability.html">Text size and colours</a></li><li><a href="faq.html">FAQ</a></li><li><a href="making-of.html">Making of</a></li><li><a href="story.html">Why no sound</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>

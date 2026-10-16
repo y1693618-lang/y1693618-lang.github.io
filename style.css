@@ -298,3 +298,19 @@ footer.site p{margin:0;line-height:1.85}
 .skins img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line-soft)}
 .skins figcaption{font-size:.8125rem;line-height:1.6;color:var(--ink-faint);margin-top:7px}
 .skins figcaption b{display:block;color:var(--ink);font-size:.875rem}
+
+/* ---------- reading pages: seam entries, small notes ---------- */
+.prose .small{font-size:.875rem;color:var(--ink-faint)}
+.seam{display:flex;gap:16px;align-items:flex-start;margin:0 0 22px;padding:0 0 20px;border-bottom:1px solid var(--line-soft)}
+.seam img{flex:0 0 auto;width:9.5rem;max-width:38%;height:auto;border-radius:12px;border:1px solid var(--line-soft)}
+.seam > div{min-width:0}
+.seam h3{margin:0 0 4px}
+.seam h3 .no{font-family:var(--font-num);font-size:.8125rem;color:var(--ink-faint);margin-right:.6em;letter-spacing:.04em}
+.seam h3 small{font-size:.8125rem;color:var(--ink-faint);margin-left:.5em;font-weight:400}
+.seam .meta{font-family:var(--font-num);font-size:.8125rem;color:var(--ink-faint);margin:0 0 8px}
+.seam p:last-child{margin-bottom:0}
+.prose h3 + p{margin-top:4px}
+/* tables whose first column names a thing: keep the name readable on phones */
+table.named td:first-child{min-width:7.5em}
+table.named td:first-child b{display:block;font-weight:700;color:var(--ink)}
+table.named .desc{display:block;font-size:.8125rem;line-height:1.6;color:var(--ink-faint);margin-top:2px}

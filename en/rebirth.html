@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How rebirth works — Crystal Cavern</title>
+<meta name="description" content="How the number of cores is decided, what you keep and what you lose, and how to open new seams: rebirth explained in numbers.">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/en/rebirth">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/saikessho">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/rebirth">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/saikessho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How rebirth works — Crystal Cavern">
+<meta property="og:description" content="How the number of cores is decided, what you keep and what you lose, and how to open new seams: rebirth explained in numbers.">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/en/rebirth">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crystal Cavern">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../saikessho.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">Rebirth</p><h1>How rebirth works</h1><p class="lede">How the number of cores is decided, what you keep and what you lose, and how to open new seams: rebirth explained in numbers.</p></div></div><div class="wrap"><div class="prose">
+<p>Rebirth means giving up all your crystals and buildings in exchange for cores, a multiplier that lasts forever. When to rebirth is also discussed in <a href="strategy.html">Strategy</a>; this page explains the mechanics themselves, in numbers.</p>
+
+<h2>Two kinds of total</h2>
+<p>The game counts what you have mined in two ways. Both appear under Records on the Rebirth tab.</p>
+<ul>
+  <li><strong>This run</strong>: what you have mined since your last rebirth. It goes back to zero when you rebirth</li>
+  <li><strong>All time</strong>: everything you have ever mined, counted from your very first session. <strong>Rebirth never lowers it</strong></li>
+</ul>
+<p>Both the number of cores and the seam you are in are decided by the all-time total. So after a rebirth you stay in the same seam, at the same depth.</p>
+
+<h2>How many cores you get</h2>
+<p>Rebirth unlocks once your all-time total passes one million. The all-time total sets <strong>how many cores you can hold in all</strong>, and a rebirth gives you <strong>that number minus the cores you already hold</strong>.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th class="num">All-time total</th><th class="num">Cores you can hold</th><th class="num">Income multiplier</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1,000,000</td><td class="num">8</td><td class="num">×1.16</td></tr>
+    <tr><td class="num">4,000,000</td><td class="num">16</td><td class="num">×1.32</td></tr>
+    <tr><td class="num">100,000,000</td><td class="num">80</td><td class="num">×2.60</td></tr>
+    <tr><td class="num">600,000,000</td><td class="num">195</td><td class="num">×4.90</td></tr>
+    <tr><td class="num">12,000,000,000</td><td class="num">876</td><td class="num">×18.52</td></tr>
+  </tbody>
+</table></div>
+<p>The number of cores you can hold grows with the square root of the all-time total: four times the total gives twice the cores. Each core adds 2% to both taps and income per second.</p>
+
+<h2>Rebirthing early costs you no cores</h2>
+<p>This rule has one important consequence. <strong>However many times you split it up, the total number of cores you end up with is the same</strong>, because it depends only on the all-time total.</p>
+<p>For example, rebirth at an all-time total of 100 million and you get 80. Dig on to 600 million and rebirth again, and the second rebirth gives 115 (195 − 80). That is the same total as waiting until 600 million and taking 195 in one go.</p>
+<p>The difference is that <strong>rebirthing earlier gets the multiplier working sooner</strong>, at the cost of buying your buildings again. Rebirthing whenever progress starts to feel slow is a fine rule.</p>
+
+<h2>What you lose, what you keep</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>You lose</th><th>You keep</th></tr></thead>
+  <tbody>
+    <tr><td>Crystals in hand, this run's total</td><td>Cores, the all-time total</td></tr>
+    <tr><td>Every building</td><td>Your seam and depth, and the seams you have opened</td></tr>
+    <tr><td>Pick and glove upgrades</td><td>Records (taps, orbs caught and so on)</td></tr>
+    <tr><td>Any ×2 or ×5 boost still running</td><td>Settings such as text size and colours</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Opening new seams</h2>
+<p>On your first run you can only reach the seven seams up to Prism. <strong>Rebirth while you are at the deepest seam you can reach, and the one below it opens.</strong> When that is the case, the line under the meter at the top right reads "Rebirth to open the next seam".</p>
+<p>Here is the whole path to opening every seam, assuming you rebirth as soon as you reach each one.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>#</th><th>Rebirth at</th><th class="num">All-time total then</th><th class="num">Cores gained</th><th class="num">Cores held</th><th>Opens</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Prism</td><td class="num">600 million</td><td class="num">195</td><td class="num">195</td><td>Abyssite</td></tr>
+    <tr><td>2</td><td>Abyssite</td><td class="num">12 billion</td><td class="num">681</td><td class="num">876</td><td>Starcore</td></tr>
+    <tr><td>3</td><td>Starcore</td><td class="num">300 billion</td><td class="num">3,505</td><td class="num">4,381</td><td>Voidglass</td></tr>
+    <tr><td>4</td><td>Voidglass</td><td class="num">8 trillion</td><td class="num">18,246</td><td class="num">22,627</td><td>Dawnstone</td></tr>
+    <tr><td>5</td><td>Dawnstone</td><td class="num">200 trillion</td><td class="num">90,510</td><td class="num">113,137</td><td>Omega</td></tr>
+  </tbody>
+</table></div>
+<p class="small">Large numbers in this table are written in words for easy reading. In the game, numbers up to one trillion are shown with every digit, like "300,000,000,000", and from one trillion they are shown as "8.00 × 10<sup>12</sup>".</p>
+<p>Extra rebirths along the way are fine, but a seam only opens when you rebirth at the deepest one. The colour and depth of each seam are in <a href="seams.html">The twelve seams</a>.</p>
+
+<h2>"Extra cores" in the app</h2>
+<p>The Bonus tab in the iPhone app has "Extra cores". Watch a short video and your next rebirth gives 25% more cores. Since the total you can hold is set by your all-time total, the extra cores are taken back from later rebirths: think of it as getting cores early. It is entirely optional; the game can be finished without it.</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="seams.html">The twelve seams</a></li><li><a href="buildings.html">Buildings</a></li><li><a href="rebirth.html">How rebirth works</a></li><li><a href="readability.html">Text size and colours</a></li><li><a href="faq.html">FAQ</a></li><li><a href="making-of.html">Making of</a></li><li><a href="story.html">Why no sound</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>
