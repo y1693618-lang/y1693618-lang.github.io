@@ -136,6 +136,14 @@ h1{
 /* ---------- prose ---------- */
 main{padding-bottom:72px}
 .prose{max-width:var(--measure);padding-top:34px}
+/* On a PC the reading column was narrow and left the right side empty.
+   From 1024px up, Japanese gets about 41 characters a line; English a
+   little less, since long English lines are harder to follow. Phones
+   are unchanged. */
+@media (min-width:1024px){
+  html[lang="ja"]{--measure:44rem}
+  html[lang="en"]{--measure:38rem}
+}
 .prose.wide{max-width:48rem}
 .prose h2{
   font-family:var(--font-display);font-weight:400;
