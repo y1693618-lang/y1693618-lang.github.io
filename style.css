@@ -322,3 +322,16 @@ footer.site p{margin:0;line-height:1.85}
 table.named td:first-child{min-width:7.5em}
 table.named td:first-child b{display:block;font-weight:700;color:var(--ink)}
 table.named .desc{display:block;font-size:.8125rem;line-height:1.6;color:var(--ink-faint);margin-top:2px}
+
+/* ---------- where lines break ----------
+   Headings, the lead and short items break between phrases rather than
+   in the middle of a word, and are balanced so a last line is never a
+   lone fragment. Body text avoids leaving one word or one character
+   alone on its last line. Japanese follows the strict line-break rules
+   (no small kana or closing brackets at the start of a line).
+   Browsers that do not know a rule simply ignore it. */
+h1,h2,h3,.lede,.card b,.card span,figcaption,th,td,.seam h3{text-wrap:balance}
+p,li,dd,.note{text-wrap:pretty}
+html[lang="ja"] body{line-break:strict}
+html[lang="ja"] :is(h1,h2,h3,.lede,.eyebrow,.card b,.card span,figcaption,th,td,.seam h3,nav a,li){word-break:auto-phrase}
+html[lang="en"] :is(h1,h2,h3,.lede){hyphens:manual}
