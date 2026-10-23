@@ -323,15 +323,17 @@ table.named td:first-child{min-width:7.5em}
 table.named td:first-child b{display:block;font-weight:700;color:var(--ink)}
 table.named .desc{display:block;font-size:.8125rem;line-height:1.6;color:var(--ink-faint);margin-top:2px}
 
-/* ---------- where lines break ----------
-   Headings, the lead and short items break between phrases rather than
-   in the middle of a word, and are balanced so a last line is never a
-   lone fragment. Body text avoids leaving one word or one character
-   alone on its last line. Japanese follows the strict line-break rules
-   (no small kana or closing brackets at the start of a line).
-   Browsers that do not know a rule simply ignore it. */
-h1,h2,h3,.lede,.card b,.card span,figcaption,th,td,.seam h3{text-wrap:balance}
-p,li,dd,.note{text-wrap:pretty}
-html[lang="ja"] body{line-break:strict}
-html[lang="ja"] :is(h1,h2,h3,.lede,.eyebrow,.card b,.card span,figcaption,th,td,.seam h3,nav a,li){word-break:auto-phrase}
-html[lang="en"] :is(h1,h2,h3,.lede){hyphens:manual}
+/* ---------- where lines break (PC only, 1024px and wider) ----------
+   Headings and the lead are balanced and break between phrases; body
+   text avoids a lone word on its last line. With breaks.js, a sentence
+   that fits on one line stays on one line, and a longer one breaks at
+   its punctuation. Phones are left exactly as they were. Browsers that
+   do not know a rule simply ignore it. */
+@media (min-width:1024px){
+  h1,h2,h3,.lede,.card b,.card span,figcaption,th,td,.seam h3{text-wrap:balance}
+  p,li,dd,.note{text-wrap:pretty}
+  html[lang="ja"] body{line-break:strict}
+  html[lang="ja"] :is(h1,h2,h3,.lede,.eyebrow,.card b,.card span,figcaption,th,td,.seam h3,nav a,li){word-break:auto-phrase}
+  html[lang="en"] :is(h1,h2,h3,.lede){hyphens:manual}
+  .lb-on .lb-s,.lb-on .lb-c{display:inline-block;max-width:100%;overflow-wrap:anywhere;vertical-align:top}
+}
