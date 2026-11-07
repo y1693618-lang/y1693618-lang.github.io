@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>音のかわりに、振動と文字で伝える — 結晶洞窟</title>
+<meta name="description" content="音を使わない放置ゲームで、音が担うはずの「手応え」と「お知らせ」を、iPhone の振動と画面の文字でどう伝えたか。迷ったこと、難しかったこと、作ってから気づいたこと。">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/oto-no-kawari">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/oto-no-kawari">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/instead-of-sound">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/oto-no-kawari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音のかわりに、振動と文字で伝える — 結晶洞窟">
+<meta property="og:description" content="音を使わない放置ゲームで、音が担うはずの「手応え」と「お知らせ」を、iPhone の振動と画面の文字でどう伝えたか。迷ったこと、難しかったこと、作ってから気づいたこと。">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/oto-no-kawari">
+<meta property="og:site_name" content="結晶洞窟">
+<meta property="og:locale" content="ja_JP">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="結晶洞窟">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+<script src="/breaks.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>結晶洞窟</span></a>
+    <nav class="main" aria-label="サイト内のページ">
+      <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
+      <a class="lang-switch" href="en/instead-of-sound.html" lang="en" hreflang="en"
+         aria-label="言語">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">制作の話</p><h1>音のかわりに、振動と文字で伝える</h1><p class="lede">音を使わない放置ゲームで、音が担うはずの「手応え」と「お知らせ」を、iPhone の振動と画面の文字でどう伝えたか。迷ったこと、難しかったこと、作ってから気づいたこと。</p></div></div><div class="wrap"><div class="prose">
+<p>結晶洞窟は、音をいっさい使わない放置ゲームです。なぜ音を使わないことにしたのかは、<a href="kikkake.html">作ったきっかけ</a>に書きました。タップしたときに結晶がふくらんだり数字が浮かんだりする見た目の手応えと、色やコントラストの工夫は、<a href="kaihatsu.html">開発記録</a>にまとめています。</p>
+<p>このページでは、そこに書いていない2つのことを書きます。iPhone アプリの<strong>振動</strong>と、お知らせの<strong>文字</strong>です。</p>
+
+<h2>ゲームの音は、何をしているのか</h2>
+<p>音を使わないと決めたとき、まず考えたのは「ふつうのゲームで、音は何の役に立っているのか」でした。書き出してみると、大きく5つありました。結晶洞窟では、そのひとつひとつに代わりを用意しています。</p>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>音の役目</th><th>結晶洞窟での代わり</th></tr></thead>
+  <tbody>
+    <tr><td><b>手応え</b><span class="desc">押したときのカチッという音</span></td><td>結晶のふくらみ、浮かぶ数字、軽い振動</td></tr>
+    <tr><td><b>節目の知らせ</b><span class="desc">レベルが上がったときのファンファーレ</span></td><td>大きなお知らせの文字と、重い振動</td></tr>
+    <tr><td><b>注意を引く</b><span class="desc">ボーナスが出たときの音</span></td><td>画面を横切る光る球</td></tr>
+    <tr><td><b>離れているときの知らせ</b><span class="desc">通知の音</span></td><td>音を鳴らさない通知</td></tr>
+    <tr><td><b>雰囲気</b><span class="desc">場所ごとに変わる BGM</span></td><td>鉱脈ごとに変わる結晶と画面の色</td></tr>
+  </tbody>
+</table></div>
+
+<h2>振動は、自分では思いつかなかった</h2>
+<p>正直に書くと、音のかわりに振動を使うのは、私のアイデアではありません。AIに相談しながら作っているときに出てきた案です。</p>
+<p>最初は「大丈夫かな？」と思いました。振動が強すぎたり多すぎたりすると、かえってうるさく感じるのではないかと心配だったからです。けれど、実際に iPhone で試してみると、<strong>ちょうどいい振動で、気持ちよかった</strong>です。音が聞こえなくても、指先に「押した」という感触が返ってきます。</p>
+<p>振動の強さは、出来事の大きさに合わせて分けました。</p>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>出来事</th><th>振動</th></tr></thead>
+  <tbody>
+    <tr><td><b>結晶を掘る</b></td><td>いちばん軽く。いちばん回数が多いので、連打しても震えすぎないよう、間をあけています</td></tr>
+    <tr><td><b>設備を買う</b></td><td>少し強く</td></tr>
+    <tr><td><b>光る球を拾う</b></td><td>うれしい出来事なので、「成功」の合図の振動</td></tr>
+    <tr><td><b>新しい鉱脈に着く</b></td><td>重く。大きな節目です</td></tr>
+    <tr><td><b>再結晶</b></td><td>「成功」の合図のあとに、重い振動。いちばん大きな節目です</td></tr>
+  </tbody>
+</table></div>
+<p>決めていたのは、<strong>振動はあくまで「おまけの手応え」にする</strong>ということです。振動がなくても、画面を見れば全部分かるようにしてあります。実際、ブラウザ版には振動がありませんが、同じように遊べます。iPhone の「設定」→「サウンドと触覚」で「システムの触覚」をオフにしている場合も、振動しません。</p>
+
+<h2>いちばん難しかったのは、文字</h2>
+<p>作っていていちばん難しかったのは、お知らせの文字です。音なら、画面を見ていなくても一瞬で伝わります。でも文字は、見て、読まなければ伝わりません。だから、<strong>「見れば必ず読める」こと、つまり視認性を100％にすること</strong>を目標にしました。そのために気をつけたのは、次のようなことです。</p>
+<ul>
+  <li><strong>読み切れる時間だけ出す。</strong>新しい鉱脈に着いたときなどの大きなお知らせは、約3.4秒出しています。すぐ消えると読めず、長すぎると遊ぶ邪魔になります</li>
+  <li><strong>重ねない。</strong>同じときに2つの出来事が起きても、お知らせは1つずつ順番に出します。前のお知らせが消えるまで、次は待ちます。重なると、どちらも読めなくなるからです</li>
+  <li><strong>大事な数字は1行に収める。</strong>結晶の数がとても大きくなったら、「1.23 × 10<sup>41</sup>」のような書き方に切り替えます。何行にもなると、読むのも押すのも大変になります</li>
+  <li><strong>どの配色、どの文字の大きさでも読めるようにする。</strong>文字の大きさは4段階、配色は5種類から選べます。選び方は<a href="settei.html">読みやすさの設定</a>に書きました</li>
+  <li><strong>印は、色だけでなく形でも分かるようにする。</strong>たとえば、使えるものがあるタブに付く小さな印は、縁取りのある丸にして、色が見分けにくくても形で分かるようにしました</li>
+  <li><strong>見逃しても損をしないようにする。</strong>お知らせを読み逃しても、結晶はそのまま貯まります。光る球を逃しても、少し待てば次が来ます</li>
+</ul>
+
+<h2>音がないから、耳を守れる</h2>
+<p>視認性を100％にしたことで、思っていなかった良さもありました。<strong>耳の安全を守れる</strong>ことです。</p>
+<p>画面を見るだけで全部分かるので、音量を上げる必要も、イヤホンをつける必要もありません。大きな音で耳を傷める心配がありません。<strong>難聴になるリスクを背負わずに、ゲームを楽しめます。</strong>電車の中でも夜中でも、周りを気にせずに遊べます。</p>
+
+<h2>想定していなかったレビュー</h2>
+<p>App Store に出したあと、中国のプレイヤーの方から、★5のレビューをいただきました。その中に、「軽い音の作りがちょうどいい」という言葉がありました。</p>
+<p>結晶洞窟には、音がいっさいありません。<strong>このレビューは、まったく想定していませんでした。</strong>どうしてそう感じてもらえたのかは分かりません。それでも、音がなくても「ちょうどいい」と感じてもらえたことは、うれしい驚きでした。</p>
+
+<h2>音を使わずにゲームを作りたい人へ</h2>
+<p>最後に、作ってみて分かったことを5つにまとめます。</p>
+<ol>
+  <li><strong>音の役目を書き出して、ひとつずつ代わりを決める。</strong>「音をなくす」のではなく、「音がしていた仕事を、別のもので引き受ける」と考えると進めやすくなります</li>
+  <li><strong>ひとつの出来事に、見た目と振動を重ねる。</strong>どちらかを見逃しても、もう片方で伝わります</li>
+  <li><strong>振動の強さを、出来事の大きさに合わせる。</strong>いちばん多い操作を、いちばん軽くします</li>
+  <li><strong>文字は「読み切れる時間」「重ならない」「1行に収まる」を確かめる。</strong>実際に遊んで、読めるかどうかを自分の目で確かめます</li>
+  <li><strong>見逃しても損をしない作りにする。</strong>見落とすことを前提にすると、遊ぶ人も作る人も安心できます</li>
+</ol>
+<p>音がないことは、耳が聞こえる人にとっても、聞こえない人にとっても、まったく同じ体験になるということです。結晶洞窟は、このサイトの<a href="index.html">トップページ</a>からブラウザでそのまま遊べます。</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">あそぶ</a></li><li><a href="asobikata.html">遊び方</a></li><li><a href="kouryaku.html">攻略のコツ</a></li><li><a href="koumyaku.html">鉱脈図鑑</a></li><li><a href="setsubi.html">設備図鑑</a></li><li><a href="saikessho.html">再結晶のしくみ</a></li><li><a href="settei.html">読みやすさの設定</a></li><li><a href="shitsumon.html">よくある質問</a></li><li><a href="kaihatsu.html">開発記録</a></li><li><a href="kikkake.html">作ったきっかけ</a></li><li><a href="mac-nashi.html">Macなしでアプリを出すまで</a></li><li><a href="oto-no-kawari.html">音のかわりに伝える工夫</a></li><li><a href="koushin.html">更新履歴</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="about.html">このサイトについて</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul>
+    <p>結晶洞窟 — 音を使わない放置ゲーム。個人が趣味で作って運営しています。<br>このサイトの文章とゲームの内容は制作者が書いたものです。</p>
+  </div>
+</footer>
+</body>
+</html>

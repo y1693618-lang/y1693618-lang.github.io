@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Telling the player without sound: vibration and text — Crystal Cavern</title>
+<meta name="description" content="How a game with no audio at all hands over the feel and the alerts that sound would normally carry, using the iPhone’s vibration and on-screen text. What the author hesitated over, what was hardest, and what only became clear afterwards.">
+<link rel="canonical" href="https://crystal-cavern.pages.dev/en/instead-of-sound">
+<link rel="alternate" hreflang="ja" href="https://crystal-cavern.pages.dev/oto-no-kawari">
+<link rel="alternate" hreflang="en" href="https://crystal-cavern.pages.dev/en/instead-of-sound">
+<link rel="alternate" hreflang="x-default" href="https://crystal-cavern.pages.dev/oto-no-kawari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Telling the player without sound: vibration and text — Crystal Cavern">
+<meta property="og:description" content="How a game with no audio at all hands over the feel and the alerts that sound would normally carry, using the iPhone’s vibration and on-screen text. What the author hesitated over, what was hardest, and what only became clear afterwards.">
+<meta property="og:url" content="https://crystal-cavern.pages.dev/en/instead-of-sound">
+<meta property="og:site_name" content="Crystal Cavern">
+<meta property="og:locale" content="en_US">
+<!-- SNS でリンクを貼られたときに出る画像。1200×630。どのページも同じ1枚です。 -->
+<meta property="og:image" content="https://crystal-cavern.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crystal Cavern">
+<meta name="twitter:card" content="summary_large_image">
+<!-- iPhone の Safari で開いたとき、画面の上に「App Store で入手」の帯を出す Apple 公式の仕組み。
+     iPad・パソコン・Android では何も出ません。アプリを入れている人には「開く」と出ます。
+     game.html には入れません（遊んでいる画面が下にずれるため）。 -->
+<meta name="apple-itunes-app" content="app-id=6814801361">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Chivo+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<!--
+  AdSense。所有権の確認と広告の配信を兼ねたタグです。
+
+  ここは build.py が作る説明ページ共通の雛形です。game.html はこの
+  雛形を通らないので、このタグは入りません。それが狙いです。
+  ゲーム本体は iOS アプリの中にも同じものが入っており、アプリの中で
+  AdSense を読み込むのは規約違反になるためです。
+
+  ゲーム画面に広告を出したくなったら、それは AdSense H5 Games Ads と
+  いう別の審査になります。通常の AdSense が通ってからの話です。
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2566692752938685"
+        crossorigin="anonymous"></script>
+<script src="/breaks.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 7-5 13-5-13z" fill="#7FE6D6" opacity=".9"/><path d="M12 2l5 7h-10z" fill="#FFCF7A"/></svg><span>Crystal Cavern</span></a>
+    <nav class="main" aria-label="Pages on this site">
+      <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="making-of.html">Making of</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="lang-switch" href="../oto-no-kawari.html" lang="ja" hreflang="ja"
+         aria-label="Language">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">The story</p><h1>Telling the player without sound: vibration and text</h1><p class="lede">How a game with no audio at all hands over the feel and the alerts that sound would normally carry, using the iPhone’s vibration and on-screen text. What the author hesitated over, what was hardest, and what only became clear afterwards.</p></div></div><div class="wrap"><div class="prose">
+<p>Crystal Cavern is an idle game that uses no sound at all. Why I decided against sound is in <a href="story.html">Why no sound</a>. The visual feel of a tap, the crystal swelling and the numbers floating up, and the work on colour and contrast are in <a href="making-of.html">Making of</a>.</p>
+<p>This page covers the two things those pages leave out: the <strong>vibration</strong> in the iPhone app, and the <strong>text</strong> of the game’s messages.</p>
+
+<h2>What does sound actually do in a game?</h2>
+<p>Once I had decided on no sound, the first question was what sound is really doing in an ordinary game. Written down, it came to five jobs. Crystal Cavern has a replacement for each one.</p>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>What sound does</th><th>What Crystal Cavern does instead</th></tr></thead>
+  <tbody>
+    <tr><td><b>Feedback</b><span class="desc">the click when you press something</span></td><td>The crystal swells, a number floats up, a light vibration</td></tr>
+    <tr><td><b>Marking a milestone</b><span class="desc">the fanfare when you level up</span></td><td>A large on-screen message and a heavy vibration</td></tr>
+    <tr><td><b>Catching your attention</b><span class="desc">the chime when a bonus appears</span></td><td>A glowing orb that drifts across the screen</td></tr>
+    <tr><td><b>Reaching you when you are away</b><span class="desc">the notification sound</span></td><td>Notifications that make no sound</td></tr>
+    <tr><td><b>Atmosphere</b><span class="desc">music that changes from place to place</span></td><td>Crystal and screen colours that change with each seam</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Vibration was not my idea</h2>
+<p>To be honest, using vibration in place of sound was not my idea. It came up while I was talking the design through with an AI.</p>
+<p>At first I wondered whether it would be all right. I worried that vibration that was too strong or too frequent would feel noisy in its own way. But when I actually tried it on my iPhone, <strong>it was just the right amount, and it felt good</strong>. Even without hearing anything, your fingertip gets a sense that you pressed something.</p>
+<p>The strength of the vibration follows the size of the event.</p>
+<div class="table-scroll"><table class="named">
+  <thead><tr><th>Event</th><th>Vibration</th></tr></thead>
+  <tbody>
+    <tr><td><b>Tapping the crystal</b></td><td>The lightest. It happens most often, so there is a short gap between pulses and fast tapping never turns into a constant buzz</td></tr>
+    <tr><td><b>Buying a building</b></td><td>A little stronger</td></tr>
+    <tr><td><b>Catching a glowing orb</b></td><td>A good moment, so it uses the “success” vibration</td></tr>
+    <tr><td><b>Reaching a new seam</b></td><td>Heavy. A real milestone</td></tr>
+    <tr><td><b>Rebirth</b></td><td>The “success” vibration followed by a heavy one. The biggest milestone of all</td></tr>
+  </tbody>
+</table></div>
+<p>One rule was fixed from the start: <strong>vibration is only ever an extra</strong>. Everything can be understood from the screen alone. The browser version has no vibration at all and plays the same way. If “System Haptics” is turned off under Settings → Sounds &amp; Haptics on the iPhone, the game does not vibrate either.</p>
+
+<h2>The hardest part was the text</h2>
+<p>The hardest thing to get right was the text of the messages. A sound reaches you in an instant, even if you are not looking at the screen. Text only reaches you if you look at it and read it. So the goal became <strong>readability of one hundred percent: if you look, you can always read it</strong>. In practice that meant:</p>
+<ul>
+  <li><strong>Leave it on screen long enough to read.</strong> Large messages, such as reaching a new seam, stay for about 3.4 seconds. Shorter and they cannot be read; longer and they get in the way</li>
+  <li><strong>Never stack them.</strong> If two things happen at once, the messages still appear one at a time, each waiting for the one before to leave. Overlapping messages are two messages nobody can read</li>
+  <li><strong>Keep the important number on one line.</strong> When the crystal count grows very large, it switches to a form like “1.23 × 10<sup>41</sup>”. A number that wraps over several lines is hard to read and pushes the buttons out of reach</li>
+  <li><strong>Make it readable in every colour scheme and every text size.</strong> There are four text sizes and five colour schemes. Which to choose is covered in <a href="readability.html">Text size and colours</a></li>
+  <li><strong>Mark things by shape as well as colour.</strong> For example, the small mark that appears on a tab when something there is ready is a ringed dot, so it can be told apart by its shape even if the colour is hard to see</li>
+  <li><strong>Missing a message costs nothing.</strong> If you miss one, your crystals keep building up. If you miss a glowing orb, another comes along a little later</li>
+</ul>
+
+<h2>No sound means your ears are safe</h2>
+<p>Making everything readable on screen had a benefit I had not expected: <strong>it keeps your ears safe</strong>.</p>
+<p>Because everything can be understood just by looking, there is no need to turn the volume up or to wear earphones, and no risk of damaging your hearing with loud sound. <strong>You can enjoy the game without taking on any risk of hearing loss.</strong> You can also play on a train or in the middle of the night without disturbing anyone.</p>
+
+<h2>A review I never expected</h2>
+<p>After the app reached the App Store, a player in China left a five-star review. In it was a line praising how light and just right the sound was.</p>
+<p>Crystal Cavern has no sound at all. <strong>That review was something I had never expected.</strong> I do not know why it felt that way to them. Still, it was a happy surprise that a game with no sound could feel “just right”.</p>
+
+<h2>If you want to make a game without sound</h2>
+<p>To finish, here are five things I learned along the way.</p>
+<ol>
+  <li><strong>List what sound does, and choose a replacement for each job.</strong> It is easier to think of it as handing sound’s work to something else, rather than simply taking sound away</li>
+  <li><strong>Give each event both a visual and a vibration.</strong> If one is missed, the other still gets through</li>
+  <li><strong>Match the strength of the vibration to the size of the event.</strong> Make the most frequent action the lightest</li>
+  <li><strong>Check that text stays long enough to read, never overlaps, and fits on one line.</strong> Play the game yourself and confirm with your own eyes that you can read it</li>
+  <li><strong>Build it so that missing something costs nothing.</strong> Assuming people will miss things makes the game more relaxing for players and for the person making it</li>
+</ol>
+<p>Having no sound means the game is exactly the same experience for people who can hear and for people who cannot. You can play Crystal Cavern in your browser straight from the <a href="index.html">home page</a>.</p>
+</div></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul><li><a href="index.html">Play</a></li><li><a href="how-to-play.html">How to play</a></li><li><a href="strategy.html">Strategy</a></li><li><a href="seams.html">The twelve seams</a></li><li><a href="buildings.html">Buildings</a></li><li><a href="rebirth.html">How rebirth works</a></li><li><a href="readability.html">Text size and colours</a></li><li><a href="faq.html">FAQ</a></li><li><a href="making-of.html">Making of</a></li><li><a href="story.html">Why no sound</a></li><li><a href="without-a-mac.html">Shipping without a Mac</a></li><li><a href="instead-of-sound.html">Instead of sound</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="contact.html">Contact</a></li><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+    <p>Crystal Cavern — a quiet idle game with no sound. Made and run by one person, for the love of it.<br>Everything on this site was written by its author.</p>
+  </div>
+</footer>
+</body>
+</html>
