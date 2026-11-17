@@ -65,6 +65,17 @@
 What follows is the record of those changes.</p>
 </div>
 
+<h2>1.9.1 — Fixed: progress lost after crystals showed “∞”</h2>
+<p><span class="tag">2026-11-17</span></p>
+<ul>
+  <li>After a very long game, crystals could grow so large that they showed “∞”, and the next time you opened the game they were back to 0.
+  Crystals now <strong>stop at 10<sup>300</sup></strong>, so they never become “∞” and your save is kept</li>
+  <li>If your crystals show “∞” right now, or you closed the game while they did and have not opened it since, your crystals become <strong>10<sup>300</sup></strong> after the update and you carry on
+  (if the game has already started again from 0, that progress cannot be brought back)</li>
+  <li>Tapping quickly no longer zooms the screen (in a browser you can still zoom with two fingers)</li>
+  <li>The iPhone app gets the same fix in version 1.4.1</li>
+</ul>
+
 <h2>1.9 — Expeditions, core research and today’s requests</h2>
 <p><span class="tag">2026-11-04</span></p>
 <ul>
